@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using AssistidCollector1.Interfaces;
+﻿using AssistidCollector1.Interfaces;
 using System.IO;
 using AssistidCollector1.Droid.Implementations;
 using Xamarin.Forms;
@@ -9,6 +8,12 @@ namespace AssistidCollector1.Droid.Implementations
 {
     public class ImplementationSaveLoad : InterfaceSaveLoad
     {
+        public string GetLocalFilePath(string filename)
+        {
+            string path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            return Path.Combine(path, filename);
+        }
+
         public bool FileExists(string filename)
         {
             return File.Exists(CreatePathToFile(filename));
