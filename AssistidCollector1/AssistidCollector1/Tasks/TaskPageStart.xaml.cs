@@ -27,8 +27,8 @@ namespace AssistidCollector1.Tasks
             {
                 PageId = Identifiers.Pages.NightAwakenings,
                 PageTitle = "Night-time Awakenings",
-                PageDescription = "For instructions on how to work on your child waking at night, you can follow the instructions provided here.",
-                PageButton = "Select this option for more information",
+                PageDescription = "For instructions on how to work on your child waking at night, you can follow the instructions provided here",
+                PageButton = "Select this option for more information on Night-time awakenings",
                 PageImage = "NightAwakeningsCropped.jpg"
             });
 
@@ -36,8 +36,8 @@ namespace AssistidCollector1.Tasks
             {
                 PageId = Identifiers.Pages.BedtimeResistance,
                 PageTitle = "Bedtime Resistance",
-                PageDescription = "...",
-                PageButton = "Select this option for more information",
+                PageDescription = "This section provides information on how to address resistance to bedtime routines",
+                PageButton = "Select this option for ways to address Bedtime Resistance",
                 PageImage = "BedtimeResistanceCropped.jpg"
             });
 
@@ -45,8 +45,8 @@ namespace AssistidCollector1.Tasks
             {
                 PageId = Identifiers.Pages.CoSleeping,
                 PageTitle = "Co-sleeping",
-                PageDescription = "...",
-                PageButton = "Select this option for more information",
+                PageDescription = "This area focuses on strategies for managing co-sleeping behavior.",
+                PageButton = "Select this option for co-sleeping behavior strategies",
                 PageImage = "CoSleepingCropped.jpg"
             });
 
@@ -54,8 +54,8 @@ namespace AssistidCollector1.Tasks
             {
                 PageId = Identifiers.Pages.LateOnset,
                 PageTitle = "Late Onset of Sleep",
-                PageDescription = "...",
-                PageButton = "Select this option for more information",
+                PageDescription = "This section focuses on how to address times when children do not get tired until very late.",
+                PageButton = "Select this option for late-onset sleep strategies",
                 PageImage = "LateOnsetCropped.jpg"
             });
 
@@ -63,8 +63,8 @@ namespace AssistidCollector1.Tasks
             {
                 PageId = Identifiers.Pages.EarlyMorningAwakenings,
                 PageTitle = "Early morning awakenings",
-                PageDescription = "...",
-                PageButton = "Select this option for more information",
+                PageDescription = "Information in this area discusses early morning sleep awakenings.",
+                PageButton = "Select this option for tips on addressing early morning awakenings.",
                 PageImage = "EarlyMorningCropped.jpg"
             });
 
@@ -102,8 +102,38 @@ namespace AssistidCollector1.Tasks
                         Debug.WriteLineIf(App.Debugging, "TODO: Go to night awakenings");
 
                         break;
+
+                    case Identifiers.Pages.BedtimeResistance:
+                        Debug.WriteLineIf(App.Debugging, "TODO: Go to BedtimeResistance");
+
+                        break;
+
+                    case Identifiers.Pages.CoSleeping:
+                        Debug.WriteLineIf(App.Debugging, "TODO: Go to CoSleeping");
+
+                        break;
+
+                    case Identifiers.Pages.EarlyMorningAwakenings:
+                        Debug.WriteLineIf(App.Debugging, "TODO: Go to EarlyMorningAwakenings");
+
+                        break;
+
+                    case Identifiers.Pages.LateOnset:
+                        Debug.WriteLineIf(App.Debugging, "TODO: Go to LateOnset");
+
+                        break;
                 }                
             }
+        }
+
+        /// <summary>
+        /// Help menu button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void startPageButtonBottom_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new TaskHelp());
         }
     }
 }

@@ -21,19 +21,23 @@
                     Grid.Row="0"
                     Grid.Column="0">
             <StackLayout x:Name="startPageStackContent">
+                <Label Text="Current Sleep Tasks"
+                       FontSize="Large"
+                       HorizontalTextAlignment="Center"
+                       HorizontalOptions="FillAndExpand"></Label>
 
             </StackLayout>
         </ScrollView>
 
         <Button x:Name="startPageButtonBottom"
-                Text="Example Button"
+                Text="Help and Other Instructions"
+                Clicked="startPageButtonBottom_Clicked"
                 HorizontalOptions="FillAndExpand"
+                BackgroundColor="Green"
+                TextColor="White"
                 Margin="5"
                 Grid.Row="1"
-                Grid.Column="0">
-            
+                Grid.Column="0">            
         </Button>
-
     </Grid>
-
 </ContentPage>
