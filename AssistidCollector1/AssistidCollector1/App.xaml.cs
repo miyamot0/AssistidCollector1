@@ -1,5 +1,4 @@
-﻿using AssistidCollector1.Constants;
-using AssistidCollector1.Helpers;
+﻿using AssistidCollector1.Helpers;
 using AssistidCollector1.Interfaces;
 using AssistidCollector1.Models;
 using AssistidCollector1.Pages;
@@ -23,7 +22,7 @@ namespace AssistidCollector1
         public static Assembly MainAssembly = typeof(App).GetTypeInfo().Assembly;
         public static Manifest MainManifest;
         
-        public string AccessToken
+        public static string AccessToken
         {
             get
             {
@@ -35,7 +34,7 @@ namespace AssistidCollector1
             }
         }
 
-        public string ApplicationId
+        public static string ApplicationId
         {
             get
             {
@@ -47,14 +46,25 @@ namespace AssistidCollector1
             }
         }
 
-        private static DropboxClient dropboxClient;
+        public static string ApplicationName
+        {
+            get
+            {
+                return Settings.AppName;
+            }
+            set
+            {
+                Settings.AppName = value;
+            }
+        }
+
+        public static DropboxClient dropboxClient;
         public static DropboxClient DropBoxClient
         {
             get
             {
                 return dropboxClient;
             }
-
             private set
             {
                 using (DropboxClient old = dropboxClient)
@@ -96,64 +106,14 @@ namespace AssistidCollector1
         {
             InitializeComponent();
 
-            AccessToken = AuthenticationConstants.DevelopmentKey;
-            Settings.AppName = "AssistidApp01";
-
-            dropboxClient = new DropboxClient(AccessToken, new DropboxClientConfig(Settings.AppName));
-
-
-
-
-            /*
-            Debug.WriteLineIf(App.Debugging, Settings.AppName + " >>> Staring up...");
-
-            #region Initial Manifest Setup
-
-            if (!DependencyService.Get<InterfaceSaveLoad>().FileExists("Manifest.json"))
-            {
-                MainManifest = null;
-
-                DependencyService.Get<InterfaceSaveLoad>().SaveFile("Manifest.json", JsonConvert.SerializeObject(MainManifest));
-            }
-            else
-            {
-                MainManifest = JsonConvert.DeserializeObject<Manifest>(DependencyService.Get<InterfaceSaveLoad>().LoadFile("Manifest.json"));
-            }
-
-            if (CrossConnectivity.Current.IsConnected)
-            {
-                Debug.WriteLineIf(App.Debugging, Settings.AppName + " >>> Connected, Updating ...");
-
-                DropboxServer.GetManifest(MainManifest);
-
-                Debug.WriteLineIf(App.Debugging, Settings.AppName + " >>> Creating Client Folder...");
-
-                DropBoxClient.Files.CreateFolderV2Async("/" + ApplicationId + "/files");
-
-                Task<string> getManifest = DropboxServer.DownloadManifest();
-
-                MainManifest = JsonConvert.DeserializeObject<Manifest>(getManifest.Result);
-            }
-            */
-
-
-            /*
-             
-            /// <summary>
-            /// Async call to update files
-            /// </summary>
-            private async void DoUpdate()
-            {
-                await DownloadManifest();
-
-                MainWebView.Eval("setAwaiter(false);");
-            }             
-             
-             */
-
             if (ApplicationId == string.Empty)
             {
                 ApplicationId = String.Format("{0:X}", RandomString(12));
+            }
+
+            if (ApplicationName == string.Empty)
+            {
+                ApplicationName = "AssistidApp01";
             }
 
             MainPage = new LoadingPage();
@@ -164,5 +124,10 @@ namespace AssistidCollector1
         protected override void OnSleep() { }
 
         protected override void OnResume() { }
+
+        public static void ReloadDropbox()
+        {
+            dropboxClient = new DropboxClient(AccessToken, new DropboxClientConfig(ApplicationName));
+        }
     }
 }

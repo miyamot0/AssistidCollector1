@@ -1,13 +1,13 @@
-﻿using AssistidCollector1.Helpers;
+﻿using Acr.UserDialogs;
+using AssistidCollector1.Helpers;
 using AssistidCollector1.Models;
 using Newtonsoft.Json;
 using Plugin.Connectivity;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-
+using System.Threading;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace AssistidCollector1.Pages
@@ -25,33 +25,84 @@ namespace AssistidCollector1.Pages
                 }
             };
 
-            LoadAssets();
+            CheckCredentials();            
         }
 
+        /// <summary>
+        /// CheckCredentials()
+        /// </summary>
+        public async void CheckCredentials()
+        {
+            if (App.AccessToken == null || App.AccessToken == "")
+            {
+                var userInput = await UserDialogs.Instance.PromptAsync("Please input API token", null, "OK", "Cancel", "Api Token");
+
+                Debug.WriteLineIf(App.Debugging, userInput.Text);
+
+                App.AccessToken = userInput.Text;
+
+                App.ReloadDropbox();
+            }
+            else
+            {
+                App.ReloadDropbox();
+            }
+
+            Debug.WriteLineIf(App.Debugging, "CheckCredentials() <<< Auth " + App.AccessToken);
+
+            await Task.Delay(50);
+
+            LoadAssets();
+        }
+        
+        /// <summary>
+        /// Load Stuff
+        /// </summary>
         public async void LoadAssets()
         {
             Debug.WriteLineIf(App.Debugging, "LoadAssets()");
 
-            var mManifest = await App.Database.GetManifestAsync();
+            var cancelSrc = new CancellationTokenSource();
+            var config = new ProgressDialogConfig()
+                .SetTitle("Downloading Manifest")
+                .SetIsDeterministic(false)
+                .SetMaskType(MaskType.Black)
+                .SetCancel(onCancel: cancelSrc.Cancel);
 
-            Debug.WriteLineIf(App.Debugging, "get manifest");
-
-            if (mManifest != null && mManifest.Count == 1)
+            using (var progress = UserDialogs.Instance.Progress(config))
             {
-                Debug.WriteLineIf(App.Debugging, "Count: " + mManifest.Count);
+                try
+                {
+                    Debug.WriteLineIf(App.Debugging, "LoadAssets() << Loading existing DB");
+                    var mManifest = await App.Database.GetManifestAsync();
 
-                App.MainManifest = JsonConvert.DeserializeObject<Manifest>(mManifest.First().JSON);
+                    if (mManifest != null && mManifest.Count == 1)
+                    {
+                        Debug.WriteLineIf(App.Debugging, "LoadAssets() <<< Existing Manifest: Count: " + mManifest.Count);
+
+                        App.MainManifest = JsonConvert.DeserializeObject<Manifest>(mManifest.First().JSON);
+                    }
+                    else
+                    {
+                        Debug.WriteLineIf(App.Debugging, "No Manifest Exists");
+
+                        App.MainManifest = null;
+                    }
+
+                    if (CrossConnectivity.Current.IsConnected)
+                    {
+                        Debug.WriteLineIf(App.Debugging, "LoadAssets() <<< Connected.. downloading manifest");
+
+                        await DropboxServer.DownloadManifest(App.MainManifest);
+                    }
+
+                    Debug.WriteLineIf(App.Debugging, "LoadAssets() <<< Manifest downloaded");
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLineIf(App.Debugging, e.ToString());
+                }
             }
-            else
-            {
-                App.MainManifest = null;
-            }
-
-            await DropboxServer.DownloadManifest(App.MainManifest);
-
-            Debug.WriteLineIf(App.Debugging, "Updated!");
-
-            App.Current.MainPage = new StartPage();
         }
     }
 }

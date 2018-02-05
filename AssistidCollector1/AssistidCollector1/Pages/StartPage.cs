@@ -1,5 +1,4 @@
-﻿using AssistidCollector1.Constants;
-using AssistidCollector1.Helpers;
+﻿using AssistidCollector1.Helpers;
 using AssistidCollector1.Interfaces;
 using AssistidCollector1.Models;
 using Newtonsoft.Json;
@@ -83,6 +82,7 @@ namespace AssistidCollector1.Pages
 
             e.Cancel = true;
 
+            /*
             switch (GetCommand(e.Url).Trim())
             {
                 case NavigationConstants.MoveCommand:
@@ -95,6 +95,7 @@ namespace AssistidCollector1.Pages
 
                     break;
             }
+            */
 
         }
 
@@ -134,10 +135,10 @@ namespace AssistidCollector1.Pages
             {
                 tempCommand = command.Split('=');
 
-                if (tempCommand[0].Contains(NavigationConstants.CommandString))
-                {
+                //if (tempCommand[0].Contains(NavigationConstants.CommandString))
+                //{
                     return tempCommand[1];
-                }
+                //}
             }
 
             return "";
@@ -157,10 +158,10 @@ namespace AssistidCollector1.Pages
             {
                 tempCommand = command.Split('=');
 
-                if (tempCommand[0].Contains(NavigationConstants.MoveCommand))
-                {
+                //if (tempCommand[0].Contains(NavigationConstants.MoveCommand))
+                //{
                     return tempCommand[1];
-                }
+                //}
             }
 
             return "";
