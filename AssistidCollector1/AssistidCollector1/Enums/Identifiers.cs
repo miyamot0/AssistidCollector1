@@ -2,6 +2,9 @@
 {
     public static class Identifiers
     {
+        /// <summary>
+        /// Page Identifiers
+        /// </summary>
         public enum Pages
         {
             Start,

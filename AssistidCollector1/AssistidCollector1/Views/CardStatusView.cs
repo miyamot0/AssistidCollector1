@@ -2,19 +2,19 @@
 
 namespace AssistidCollector1.Views
 {
+    /// <summary>
+    /// Card status view
+    /// </summary>
     public class CardStatusView : ContentView
     {
         public CardStatusView()
         {
-            var statusBoxView = new BoxView
+            Content = new BoxView
             {
                 VerticalOptions = LayoutOptions.Fill,
-                HorizontalOptions = LayoutOptions.Fill
+                HorizontalOptions = LayoutOptions.Fill,
+                BackgroundColor = Color.FromHex("C5C5C5")
             };
-
-            statusBoxView.BackgroundColor = Color.FromHex("C5C5C5");
-
-            Content = statusBoxView;
         }
     }
 }

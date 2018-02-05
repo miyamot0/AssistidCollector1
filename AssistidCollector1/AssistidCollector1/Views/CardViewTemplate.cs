@@ -4,6 +4,9 @@ using Xamarin.Forms;
 
 namespace AssistidCollector1.Views
 {
+    /// <summary>
+    /// Card view template
+    /// </summary>
     public class CardViewTemplate : ContentView
     {
         public Identifiers.Pages PageId;
@@ -32,16 +35,14 @@ namespace AssistidCollector1.Views
                 }
             };
 
-            grid.Children.Add(new CardStatusView(), 0, 1, 0, 2);
-
-            var mImage = new Image() {
+            grid.Children.Add(new CardStatusView(), 0, 1, 0, 2);            
+            grid.Children.Add(new Image()
+            {
                 Source = sleepTask.PageImage,
                 HeightRequest = 70,
                 WidthRequest = 70,
                 Aspect = Aspect.AspectFill
-            };
-
-            grid.Children.Add(mImage, 1, 2, 0, 1);
+            }, 1, 2, 0, 1);
             grid.Children.Add(new CardDetailsView(sleepTask.PageTitle, sleepTask.PageDescription), 2, 5, 0, 1);
             grid.Children.Add(new CardButtonView(sleepTask.PageButton), 1, 5, 1, 2);
 

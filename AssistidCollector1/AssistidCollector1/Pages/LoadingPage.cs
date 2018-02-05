@@ -14,6 +14,9 @@ namespace AssistidCollector1.Pages
 {
     public class LoadingPage : ContentPage
     {
+        /// <summary>
+        /// Loading page for manifest
+        /// </summary>
         public LoadingPage()
         {
             Content = new StackLayout

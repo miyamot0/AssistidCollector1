@@ -1,4 +1,3 @@
-// Helpers/Settings.cs
 using Plugin.Settings;
 using Plugin.Settings.Abstractions;
 
@@ -11,6 +10,9 @@ namespace AssistidCollector1.Helpers
 	/// </summary>
 	public static class Settings
 	{
+        /// <summary>
+        /// Helper class for settings
+        /// </summary>
 		private static ISettings AppSettings
 		{
 			get
@@ -19,16 +21,12 @@ namespace AssistidCollector1.Helpers
 			}
 		}
 
-		#region Setting Constants
-
 		private const string SettingsKey = "settings_key";
 		private static readonly string SettingsDefault = string.Empty;
 
         private const string SettingsToken = "settings_token";
         private const string SettingsName = "settings_name";
         private const string SettingsId = "settings_id";
-
-        #endregion
 
         public static string GeneralSettings
 		{

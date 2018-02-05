@@ -2,6 +2,9 @@
 
 namespace AssistidCollector1.Storage
 {
+    /// <summary>
+    /// Manifest serializer for DB
+    /// </summary>
     public class ManifestModel
     {
         [PrimaryKey, AutoIncrement]

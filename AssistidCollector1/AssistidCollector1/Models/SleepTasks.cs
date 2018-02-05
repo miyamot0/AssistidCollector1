@@ -2,6 +2,9 @@
 
 namespace AssistidCollector1.Models
 {
+    /// <summary>
+    /// Class for sleeping tasks
+    /// </summary>
     public class SleepTasks
     {
         public Identifiers.Pages PageId;
