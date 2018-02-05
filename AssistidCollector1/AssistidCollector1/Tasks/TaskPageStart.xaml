@@ -1,12 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:AssistidCollector1"
              x:Class="AssistidCollector1.Tasks.TaskPageStart">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <ScrollView x:Name="startPageScrollView"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Margin="5"
+                    Grid.Row="0"
+                    Grid.Column="0">
+            <StackLayout x:Name="startPageStackContent">
+
+            </StackLayout>
+        </ScrollView>
+
+        <Button x:Name="startPageButtonBottom"
+                Text="Example Button"
+                HorizontalOptions="FillAndExpand"
+                Margin="5"
+                Grid.Row="1"
+                Grid.Column="0">
+            
+        </Button>
+
+    </Grid>
+
 </ContentPage>

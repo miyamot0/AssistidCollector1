@@ -38,29 +38,27 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Enums\Identifiers.cs" />
     <Compile Include="Helpers\DropboxServer.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Interfaces\InterfaceContentLocation.cs" />
     <Compile Include="Interfaces\InterfaceSaveLoad.cs" />
-    <Compile Include="MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Models\Items.cs" />
     <Compile Include="Models\Manifest.cs" />
+    <Compile Include="Models\SleepTasks.cs" />
     <Compile Include="Pages\LoadingPage.cs" />
-    <Compile Include="Pages\StartPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Storage\ApplicationDatabase.cs" />
     <Compile Include="Storage\ManifestModel.cs" />
     <Compile Include="Tasks\TaskPageStart.xaml.cs">
       <DependentUpon>TaskPageStart.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CardButtonView.cs" />
+    <Compile Include="Views\CardDetailsView.cs" />
+    <Compile Include="Views\CardStatusView.cs" />
+    <Compile Include="Views\CardViewTemplate.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MainPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -135,11 +133,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="startpage.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

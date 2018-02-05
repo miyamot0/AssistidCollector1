@@ -251,17 +251,22 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\bootstrap.min.css" />
-    <AndroidAsset Include="Assets\bootstrap.min.js" />
-    <AndroidAsset Include="Assets\LocalScript.js" />
-    <AndroidAsset Include="Assets\popper.min.js" />
-    <AndroidAsset Include="Assets\Styles.css" />
+    <AndroidResource Include="Resources\drawable\placeholder.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\sticky-footer-navbar.css" />
+    <AndroidResource Include="Resources\drawable\EarlyMorningCropped.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\jquery.min.js" />
+    <AndroidResource Include="Resources\drawable\LateOnsetCropped.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\NightAwakeningsCropped.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\BedtimeResistanceCropped.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\CoSleepingCropped.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Android.Support.Animated.Vector.Drawable.25.4.0.2\build\MonoAndroid70\Xamarin.Android.Support.Animated.Vector.Drawable.targets" Condition="Exists('..\..\packages\Xamarin.Android.Support.Animated.Vector.Drawable.25.4.0.2\build\MonoAndroid70\Xamarin.Android.Support.Animated.Vector.Drawable.targets')" />

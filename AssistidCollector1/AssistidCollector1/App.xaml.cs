@@ -3,6 +3,7 @@ using AssistidCollector1.Interfaces;
 using AssistidCollector1.Models;
 using AssistidCollector1.Pages;
 using AssistidCollector1.Storage;
+using AssistidCollector1.Tasks;
 using Dropbox.Api;
 using Newtonsoft.Json;
 using Plugin.Connectivity;
@@ -116,7 +117,8 @@ namespace AssistidCollector1
                 ApplicationName = "AssistidApp01";
             }
 
-            MainPage = new LoadingPage();
+            //MainPage = new LoadingPage();
+            MainPage = new TaskPageStart();
         }
 
         protected override void OnStart() { }
