@@ -161,16 +161,9 @@ namespace AssistidCollector1.Tasks
                 CSV = returnString
             });
 
-            Debug.WriteLineIf(App.Debugging, "CSV = " + result);
-
             List<StorageModel> allSavedData = await App.Database.GetDataAsync();
 
-            Debug.WriteLineIf(App.Debugging, "Counts = " + allSavedData.Count);
-
-            using (System.IO.MemoryStream stream = new System.IO.MemoryStream(Encoding.UTF8.GetBytes(returnString)))
-            {
-                DropboxServer.UploadFile(stream, allSavedData.Count - 1);
-            }
+            DropboxServer.UploadFile(new System.IO.MemoryStream(Encoding.UTF8.GetBytes(returnString)), allSavedData.Count - 1);
 
             await Navigation.PopModalAsync();
         }

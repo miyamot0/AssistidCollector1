@@ -77,32 +77,23 @@ namespace AssistidCollector1.Pages
             {
                 try
                 {
-                    Debug.WriteLineIf(App.Debugging, "LoadAssets() << Loading existing DB");
                     var mManifest = await App.Database.GetManifestAsync();
 
                     if (mManifest != null && mManifest.Count == 1)
                     {
-                        Debug.WriteLineIf(App.Debugging, "LoadAssets() <<< Existing Manifest: Count: " + mManifest.Count);
-
                         App.MainManifest = JsonConvert.DeserializeObject<Manifest>(mManifest.First().JSON);
                     }
                     else
                     {
-                        Debug.WriteLineIf(App.Debugging, "No Manifest Exists");
-
                         App.MainManifest = null;
                     }
 
                     if (CrossConnectivity.Current.IsConnected)
                     {
-                        Debug.WriteLineIf(App.Debugging, "LoadAssets() <<< Connected.. downloading manifest");
-
                         await DropboxServer.CreateDropboxFolder();
 
                         await DropboxServer.DownloadManifest(App.MainManifest);
                     }
-
-                    Debug.WriteLineIf(App.Debugging, "LoadAssets() <<< Manifest downloaded");
                 }
                 catch (Exception e)
                 {

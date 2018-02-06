@@ -44,48 +44,38 @@ namespace AssistidCollector1.Helpers
 
             using (var response = await App.DropboxClient.Files.DownloadAsync("/Manifest.json"))
             {
-                Debug.WriteLineIf(App.Debugging, Settings.AppName + " >>> Deserializing ...");
-
                 var json = await response.GetContentAsStringAsync();
-
-                Debug.WriteLineIf(App.Debugging, Settings.AppName + " >>> " + json);
 
                 Manifest latestManifest = JsonConvert.DeserializeObject<Manifest>(json);
 
                 if (currentManifest == null || currentManifest.Iteration < latestManifest.Iteration)
                 {
-                    Debug.WriteLineIf(App.Debugging, "Updating files...");
-
                     foreach (var item in latestManifest.Tasks)
                     {
                         await DownloadFile(item.Content);
                     }
 
-                    ManifestModel saveItem = new ManifestModel()
-                    {
-                        ID = 0,
-                        JSON = JsonConvert.SerializeObject(latestManifest)
-                    };
-
                     if (currentManifest == null)
                     {
-                        await App.Database.SaveItemAsync(saveItem);
+                        await App.Database.SaveItemAsync(new ManifestModel()
+                        {
+                            ID = 0,
+                            JSON = JsonConvert.SerializeObject(latestManifest)
+                        });
                     }
                     else
                     {
-                        await App.Database.UpdateItemAsync(saveItem);
+                        await App.Database.UpdateItemAsync(new ManifestModel()
+                        {
+                            ID = 0,
+                            JSON = JsonConvert.SerializeObject(latestManifest)
+                        });
                     }
 
                     App.MainManifest = latestManifest;
                 }
                 else
                 {
-                    Debug.WriteLineIf(App.Debugging, 
-                        "Curr Manifest: " +
-                        currentManifest.Iteration.ToString() +
-                        " Latest Manifest: " +
-                        latestManifest.Iteration.ToString());
-
                     App.MainManifest = currentManifest;
                 }
             }
@@ -98,10 +88,10 @@ namespace AssistidCollector1.Helpers
         /// <returns></returns>
         private static async Task DownloadFile(string filePath)
         {
+            Debug.WriteLineIf(App.Debugging, Settings.AppName + " >>> Downloading " + filePath);
+
             using (var response = await App.DropboxClient.Files.DownloadAsync("/Tasks/" + filePath))
             {
-                Debug.WriteLineIf(App.Debugging, Settings.AppName + " >>> Downloading " + filePath);
-
                 var receivedData = await response.GetContentAsStringAsync();
 
                 DependencyService.Get<InterfaceSaveLoad>().SaveFile(filePath, receivedData);
@@ -115,9 +105,7 @@ namespace AssistidCollector1.Helpers
         /// <param name="fileNumber"></param>
         public static async void UploadFile(System.IO.MemoryStream stream, int fileNumber)
         {
-            string filePath = "/" + App.ApplicationId + "/" + fileNumber.ToString("d4") + ".csv";
-
-            Debug.WriteLineIf(App.Debugging, filePath);
+            string filePath = "/" + App.ApplicationId + "/" + App.ApplicationId + "_" + fileNumber.ToString("d4") + ".csv";
 
             await UploadFile(stream, filePath);
         }
