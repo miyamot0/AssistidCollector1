@@ -59,8 +59,6 @@ namespace AssistidCollector1.Pages
                 App.ReloadDropbox();
             }
 
-            await Task.Delay(50);
-
             LoadAssets();
         }
         
@@ -69,15 +67,20 @@ namespace AssistidCollector1.Pages
         /// </summary>
         public async void LoadAssets()
         {
-            double steps = 7.0;
-            double count = 0.0;
-            
+            // Skip loading if no internet
+            if (!CrossConnectivity.Current.IsConnected)
+            {
+                App.Current.MainPage = new NavigationPage(new TaskPageStart());
+            }
+
+            int filesUploaded = 0;
+
             Debug.WriteLineIf(App.Debugging, "LoadAssets()");
 
             CancellationTokenSource cancelSrc = new CancellationTokenSource();
             ProgressDialogConfig config = new ProgressDialogConfig()
                 .SetTitle("Contacting Server")
-                .SetIsDeterministic(true)
+                .SetIsDeterministic(false)
                 .SetMaskType(MaskType.Black)
                 .SetCancel(onCancel: cancelSrc.Cancel);
 
@@ -85,18 +88,9 @@ namespace AssistidCollector1.Pages
             {
                 try
                 {
+                    progress.Title = "Downloading manifest";
+
                     var mManifest = await App.Database.GetManifestAsync();
-
-                    var currentItems = await App.Database.GetDataAsync();
-
-                    if (currentItems != null)
-                    {
-                        steps = steps + currentItems.Count;
-                    }
-
-                    count += 1.0;
-
-                    progress.PercentComplete = (int)((count / steps) * 100);
 
                     if (mManifest != null && mManifest.Count == 1)
                     {
@@ -107,72 +101,60 @@ namespace AssistidCollector1.Pages
                         App.MainManifest = null;
                     }
 
-                    count += 1.0;
+                    progress.Title = "Comparing manifests";
 
-                    progress.PercentComplete = (int)((count / steps) * 100);
+                    await DropboxServer.DownloadManifest(App.MainManifest);
 
-                    if (CrossConnectivity.Current.IsConnected)
+                    progress.Title = "Polling local database";
+
+                    var currentItems = await App.Database.GetDataAsync();
+
+                    progress.Title = "Polling remote database";
+
+                    ListFolderResult filesExisting = await DropboxServer.CountIndividualFiles();
+
+                    if (filesExisting == null)
                     {
-                        bool createdFolder = await DropboxServer.CreateDropboxFolder();
-
-                        count += 1.0;
-
-                        progress.PercentComplete = (int)((count / steps) * 100);
-
-                        ListFolderResult filesExisting = await DropboxServer.CountIndividualFiles();
-
-                        int filesUploaded = filesExisting.Entries.Count;
-
-                        count += 1.0;
-
-                        progress.PercentComplete = (int)((count / steps) * 100);
-
-                        bool missingInList = true;
-
-                        if (currentItems != null && currentItems.Count != filesUploaded)
-                        {
-                            foreach (Storage.StorageModel currentDataPoint in currentItems)
-                            {
-                                missingInList = true;
-
-                                foreach (var file in filesExisting.Entries)
-                                {
-                                    if (file.Name.Contains(App.ApplicationId + "_" + currentDataPoint.ID.ToString("d4")))
-                                    {
-                                        missingInList = false;
-                                    }
-                                }
-
-                                if (missingInList)
-                                {
-                                    await DropboxServer.UploadFile(new System.IO.MemoryStream(Encoding.UTF8.GetBytes(currentDataPoint.CSV)), currentDataPoint.ID);
-                                }
-
-                                count += 1.0;
-
-                                progress.PercentComplete = (int)((count / steps) * 100);
-                            }
-                        }
-
-                        count += 1.0;
-
-                        progress.PercentComplete = (int)((count / steps) * 100);
-
-                        await DropboxServer.DownloadManifest(App.MainManifest);
+                        filesUploaded = 0;
+                    }
+                    else
+                    {
+                        filesUploaded = filesExisting.Entries.Count;
                     }
 
-                    count = steps;
+                    progress.Title = "Comparing local and remote data";
 
-                    progress.PercentComplete = 100;
+                    bool missingInList = true;
 
-                    await Task.Delay(200);
+                    if (currentItems != null && currentItems.Count != filesUploaded)
+                    {
+                        foreach (Storage.StorageModel currentDataPoint in currentItems)
+                        {
+                            missingInList = true;
+
+                            Debug.WriteLineIf(App.Debugging, "CurrentDataName <<< " + App.ApplicationId + "_" + currentDataPoint.ID.ToString("d4"));
+
+                            foreach (var file in filesExisting.Entries)
+                            {
+                                if (file.Name.Contains(App.ApplicationId + "_" + currentDataPoint.ID.ToString("d4")))
+                                {
+                                    missingInList = false;
+                                }
+
+                                Debug.WriteLineIf(App.Debugging, "FileNames <<< " + file.Name);
+                            }
+
+                            if (missingInList)
+                            {
+                                await DropboxServer.UploadFile(new System.IO.MemoryStream(Encoding.UTF8.GetBytes(currentDataPoint.CSV)), currentDataPoint.ID);
+                            }
+                        }
+                    }
                 }
                 catch (Exception e)
                 {
                     Debug.WriteLineIf(App.Debugging, e.ToString());
                 }
-
-                progress.PercentComplete = (int)((7.0 / steps) * 100);
 
                 App.Current.MainPage = new NavigationPage(new TaskPageStart());
             }

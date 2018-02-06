@@ -3,6 +3,7 @@ using AssistidCollector1.Models;
 using AssistidCollector1.Storage;
 using Dropbox.Api.Files;
 using Newtonsoft.Json;
+using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -121,19 +122,31 @@ namespace AssistidCollector1.Helpers
         {
             await Task.Delay(App.DropboxDeltaTimeout);
 
-            ListFolderResult response = await App.DropboxClient.Files.ListFolderAsync("/" + App.ApplicationId);
+            try
+            {
+                ListFolderResult response = await App.DropboxClient.Files.ListFolderAsync("/" + App.ApplicationId);
 
-            if (response == null || response.Entries.Count == 0)
+                if (response == null || response.Entries.Count == 0)
+                {
+                    return null;
+                }
+
+                foreach (var index in response.Entries)
+                {
+                    Debug.WriteLineIf(App.Debugging, " <<< " + index.Name);
+                }
+
+                return response;
+
+            }
+            catch (Dropbox.Api.ApiException<GetMetadataError>)
             {
                 return null;
             }
-
-            foreach (var index in response.Entries)
+            catch (Exception)
             {
-                Debug.WriteLineIf(App.Debugging, " <<< " + index.Name);
+                return null;
             }
-
-            return response;
         }
 
         /// <summary>
