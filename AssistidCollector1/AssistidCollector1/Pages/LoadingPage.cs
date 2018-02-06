@@ -28,7 +28,8 @@ namespace AssistidCollector1.Pages
                     new Image()
                     {
                         Source = "splash.png",
-                        Aspect = Aspect.AspectFill
+                        Aspect = Aspect.AspectFill,
+                        VerticalOptions = LayoutOptions.CenterAndExpand
                     }
                 }
             };
@@ -41,6 +42,8 @@ namespace AssistidCollector1.Pages
         /// </summary>
         public async void CheckCredentials()
         {
+            Debug.WriteLineIf(App.Debugging, "CheckCredentials()");
+
             if (App.AccessToken == null || App.AccessToken == "")
             {
                 var userInput = await UserDialogs.Instance.PromptAsync("Please input API token", null, "OK", "Cancel", "Api Token");
@@ -55,8 +58,6 @@ namespace AssistidCollector1.Pages
             {
                 App.ReloadDropbox();
             }
-
-            Debug.WriteLineIf(App.Debugging, "CheckCredentials() <<< Auth " + App.AccessToken);
 
             await Task.Delay(50);
 
