@@ -7,7 +7,6 @@ using AssistidCollector1.Views;
 using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -21,6 +20,9 @@ namespace AssistidCollector1.Tasks
         CardCheckTemplate cardCheckTemplate;
         DateTime startTime;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public TaskCosleeping()
         {
             InitializeComponent();
@@ -211,6 +213,11 @@ namespace AssistidCollector1.Tasks
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void coSleepingButtonBottom_Clicked(object sender, EventArgs e)
         {
             if ((sender as Button) != null) { (sender as Button).IsEnabled = false; }

@@ -105,7 +105,7 @@ namespace AssistidCollector1.Tasks
                         break;
 
                     case Identifiers.Pages.NightAwakenings:
-                        Debug.WriteLineIf(App.Debugging, "TODO: Go to night awakenings");
+                        await Navigation.PushModalAsync(new TaskNightAwakening());
 
                         break;
 

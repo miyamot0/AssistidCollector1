@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AssistidCollector1.Tasks.TaskMorningAwakening">
+             x:Class="AssistidCollector1.Tasks.TaskNightAwakening">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -12,14 +12,14 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <ScrollView x:Name="earlyAwakeningScrollView"
+        <ScrollView x:Name="nightAwakeningScrollView"
                     VerticalOptions="FillAndExpand"
                     HorizontalOptions="FillAndExpand"
                     Margin="5"
                     Grid.Row="0"
                     Grid.Column="0">
-            <StackLayout x:Name="earlyAwakeningStackContent">
-                <Label Text="Independent Sleep Initiation"
+            <StackLayout x:Name="nightAwakeningStackContent">
+                <Label Text="Early Morning Awakening"
                        FontSize="Large"
                        HorizontalTextAlignment="Center"
                        HorizontalOptions="FillAndExpand"></Label>
@@ -27,11 +27,11 @@
             </StackLayout>
         </ScrollView>
 
-        <Button x:Name="earlyAwakeningButtonBottom"
+        <Button x:Name="nightAwakeningButtonBottom"
                 Text="Save My Recording"
                 HorizontalOptions="FillAndExpand"
                 BackgroundColor="Green"
-                Clicked="earlyAwakeningButtonBottom_Clicked"
+                Clicked="nightAwakeningButtonBottom_Clicked"
                 TextColor="White"
                 Margin="5"
                 Grid.Row="1"
