@@ -5,7 +5,7 @@
              x:Class="AssistidCollector1.Tasks.TaskPageStart">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Sync" Clicked="ToolbarItem_Clicked"/>
+        <ToolbarItem Text="Force Re-Sync" Clicked="ToolbarItem_Clicked"/>
     </ContentPage.ToolbarItems>
 
     <Grid>

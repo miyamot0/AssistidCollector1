@@ -23,8 +23,10 @@ namespace AssistidCollector1.Pages
             Content = new StackLayout
             {
                 Children = {
-                    new Label {
-                        Text = "Loading current files..."
+                    new Image()
+                    {
+                        Source = "splash.png",
+                        Aspect = Aspect.AspectFill
                     }
                 }
             };
