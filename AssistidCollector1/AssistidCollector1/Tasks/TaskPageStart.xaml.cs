@@ -85,7 +85,7 @@ namespace AssistidCollector1.Tasks
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        void OnTapGestureRecognizerTapped(object sender, EventArgs args)
+        async void OnTapGestureRecognizerTapped(object sender, EventArgs args)
         {
             var getCardTapped = sender as CardViewTemplate;
 
@@ -119,10 +119,11 @@ namespace AssistidCollector1.Tasks
                         break;
 
                     case Identifiers.Pages.LateOnset:
-                        Debug.WriteLineIf(App.Debugging, "TODO: Go to LateOnset");
+                        await Navigation.PushModalAsync(new TaskSleepOnset());
+                        //Debug.WriteLineIf(App.Debugging, "TODO: Go to LateOnset");
 
                         break;
-                }                
+                }
             }
         }
 

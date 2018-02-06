@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AssistidCollector1.Tasks.TaskSleepOnset">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <ScrollView x:Name="sleepOnsetScrollView"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Margin="5"
+                    Grid.Row="0"
+                    Grid.Column="0">
+            <StackLayout x:Name="sleepOnsetStackContent">
+                <Label Text="General Sleep Hygiene"
+                       FontSize="Large"
+                       HorizontalTextAlignment="Center"
+                       HorizontalOptions="FillAndExpand"></Label>
+
+            </StackLayout>
+        </ScrollView>
+
+        <Button x:Name="sleepOnsetButtonBottom"
+                Text="Save My Recording"
+                HorizontalOptions="FillAndExpand"
+                BackgroundColor="Green"
+                Clicked="sleepOnsetButtonBottom_Clicked"
+                TextColor="White"
+                Margin="5"
+                Grid.Row="1"
+                Grid.Column="0">
+        </Button>
+    </Grid>
+</ContentPage>

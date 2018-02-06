@@ -3,24 +3,15 @@ using AssistidCollector1.Interfaces;
 using AssistidCollector1.Models;
 using AssistidCollector1.Pages;
 using AssistidCollector1.Storage;
-using AssistidCollector1.Tasks;
 using Dropbox.Api;
-using Newtonsoft.Json;
-using Plugin.Connectivity;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace AssistidCollector1
 {
     public partial class App : Application
     {
-        public static string StandardStartPage = "AssistidCollector1.startpage.html";
-        public static Assembly MainAssembly = typeof(App).GetTypeInfo().Assembly;
         public static Manifest MainManifest;
         
         public static string AccessToken
@@ -59,8 +50,8 @@ namespace AssistidCollector1
             }
         }
 
-        public static DropboxClient dropboxClient;
-        public static DropboxClient DropBoxClient
+        private static DropboxClient dropboxClient;
+        public static DropboxClient DropboxClient
         {
             get
             {
@@ -117,8 +108,7 @@ namespace AssistidCollector1
                 ApplicationName = "AssistidApp01";
             }
 
-            //MainPage = new LoadingPage();
-            MainPage = new TaskPageStart();
+            MainPage = new LoadingPage();
         }
 
         protected override void OnStart() { }

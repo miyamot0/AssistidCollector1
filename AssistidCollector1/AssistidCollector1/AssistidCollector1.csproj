@@ -50,13 +50,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Storage\ApplicationDatabase.cs" />
     <Compile Include="Storage\ManifestModel.cs" />
+    <Compile Include="Storage\StorageModel.cs" />
     <Compile Include="Tasks\TaskHelp.xaml.cs">
       <DependentUpon>TaskHelp.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tasks\TaskPageStart.xaml.cs">
       <DependentUpon>TaskPageStart.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Tasks\TaskSleepOnset.xaml.cs">
+      <DependentUpon>TaskSleepOnset.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CardButtonView.cs" />
+    <Compile Include="Views\CardCheckTemplate.cs" />
     <Compile Include="Views\CardDetailsView.cs" />
     <Compile Include="Views\CardStatusView.cs" />
     <Compile Include="Views\CardViewTemplate.cs" />
@@ -136,6 +141,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Tasks\TaskHelp.xaml">
@@ -145,6 +151,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Tasks\TaskPageStart.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tasks\TaskSleepOnset.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -1,6 +1,7 @@
 ﻿using Acr.UserDialogs;
 using AssistidCollector1.Helpers;
 using AssistidCollector1.Models;
+using AssistidCollector1.Tasks;
 using Newtonsoft.Json;
 using Plugin.Connectivity;
 using System;
@@ -96,6 +97,8 @@ namespace AssistidCollector1.Pages
                     {
                         Debug.WriteLineIf(App.Debugging, "LoadAssets() <<< Connected.. downloading manifest");
 
+                        await DropboxServer.CreateDropboxFolder();
+
                         await DropboxServer.DownloadManifest(App.MainManifest);
                     }
 
@@ -105,6 +108,8 @@ namespace AssistidCollector1.Pages
                 {
                     Debug.WriteLineIf(App.Debugging, e.ToString());
                 }
+
+                App.Current.MainPage = new TaskPageStart();
             }
         }
     }

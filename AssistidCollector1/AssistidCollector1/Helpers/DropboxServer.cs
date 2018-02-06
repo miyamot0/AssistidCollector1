@@ -1,6 +1,7 @@
 ﻿using AssistidCollector1.Interfaces;
 using AssistidCollector1.Models;
 using AssistidCollector1.Storage;
+using Dropbox.Api.Files;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -13,6 +14,16 @@ namespace AssistidCollector1.Helpers
     /// </summary>
     public static class DropboxServer
     {
+        /// <summary>
+        /// Create remote folder
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<bool> CreateDropboxFolder()
+        {
+            var response = await App.DropboxClient.Files.CreateFolderV2Async("/" + App.ApplicationId);
+
+            return response.Metadata.IsFolder;
+        }
 
         /// <summary>
         /// Download manifest and compare against existing
@@ -31,7 +42,7 @@ namespace AssistidCollector1.Helpers
         {
             Debug.WriteLineIf(App.Debugging, "DownloadManifest() <<< Downloading Manifest ...");
 
-            using (var response = await App.dropboxClient.Files.DownloadAsync("/Manifest.json"))
+            using (var response = await App.DropboxClient.Files.DownloadAsync("/Manifest.json"))
             {
                 Debug.WriteLineIf(App.Debugging, Settings.AppName + " >>> Deserializing ...");
 
@@ -87,7 +98,7 @@ namespace AssistidCollector1.Helpers
         /// <returns></returns>
         private static async Task DownloadFile(string filePath)
         {
-            using (var response = await App.dropboxClient.Files.DownloadAsync("/Tasks/" + filePath))
+            using (var response = await App.DropboxClient.Files.DownloadAsync("/Tasks/" + filePath))
             {
                 Debug.WriteLineIf(App.Debugging, Settings.AppName + " >>> Downloading " + filePath);
 
@@ -96,6 +107,32 @@ namespace AssistidCollector1.Helpers
                 DependencyService.Get<InterfaceSaveLoad>().SaveFile(filePath, receivedData);
             }
         }
-        
+
+        /// <summary>
+        /// Upload file
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <param name="fileNumber"></param>
+        public static async void UploadFile(System.IO.MemoryStream stream, int fileNumber)
+        {
+            string filePath = "/" + App.ApplicationId + "/" + fileNumber.ToString("d4") + ".csv";
+
+            Debug.WriteLineIf(App.Debugging, filePath);
+
+            await UploadFile(stream, filePath);
+        }
+
+        /// <summary>
+        /// Upload file task
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        private static async Task<string> UploadFile(System.IO.MemoryStream stream, string filePath)
+        {
+            FileMetadata uploaded = await App.DropboxClient.Files.UploadAsync(filePath, WriteMode.Overwrite.Instance, body: stream);
+
+            return uploaded.Id;
+        }        
     }
 }
