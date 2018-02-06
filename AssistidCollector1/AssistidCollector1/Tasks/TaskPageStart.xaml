@@ -4,6 +4,10 @@
              xmlns:local="clr-namespace:AssistidCollector1"
              x:Class="AssistidCollector1.Tasks.TaskPageStart">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Sync" Clicked="ToolbarItem_Clicked"/>
+    </ContentPage.ToolbarItems>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />

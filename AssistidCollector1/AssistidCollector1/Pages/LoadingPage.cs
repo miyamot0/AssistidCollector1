@@ -66,18 +66,20 @@ namespace AssistidCollector1.Pages
         {
             Debug.WriteLineIf(App.Debugging, "LoadAssets()");
 
-            var cancelSrc = new CancellationTokenSource();
-            var config = new ProgressDialogConfig()
-                .SetTitle("Downloading Manifest")
-                .SetIsDeterministic(false)
+            CancellationTokenSource cancelSrc = new CancellationTokenSource();
+            ProgressDialogConfig config = new ProgressDialogConfig()
+                .SetTitle("Contacting Server")
+                .SetIsDeterministic(true)
                 .SetMaskType(MaskType.Black)
                 .SetCancel(onCancel: cancelSrc.Cancel);
 
-            using (var progress = UserDialogs.Instance.Progress(config))
+            using (IProgressDialog progress = UserDialogs.Instance.Progress(config))
             {
                 try
                 {
                     var mManifest = await App.Database.GetManifestAsync();
+
+                    progress.PercentComplete = (int)((1.0 / 5.0) * 100);
 
                     if (mManifest != null && mManifest.Count == 1)
                     {
@@ -88,19 +90,29 @@ namespace AssistidCollector1.Pages
                         App.MainManifest = null;
                     }
 
+                    progress.PercentComplete = (int)((2.0 / 5.0) * 100);
+
                     if (CrossConnectivity.Current.IsConnected)
                     {
                         await DropboxServer.CreateDropboxFolder();
 
+                        progress.PercentComplete = (int)((3.0 / 5.0) * 100);
+
                         await DropboxServer.DownloadManifest(App.MainManifest);
+
+                        progress.PercentComplete = (int)((4.0 / 5.0) * 100);
                     }
+
+                    progress.PercentComplete = (int)((5.0 / 5.0) * 100);
                 }
                 catch (Exception e)
                 {
                     Debug.WriteLineIf(App.Debugging, e.ToString());
                 }
 
-                App.Current.MainPage = new TaskPageStart();
+                progress.PercentComplete = (int)((5.0 / 5.0) * 100);
+
+                App.Current.MainPage = new NavigationPage(new TaskPageStart());
             }
         }
     }

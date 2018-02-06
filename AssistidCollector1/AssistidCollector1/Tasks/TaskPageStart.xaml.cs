@@ -1,9 +1,15 @@
-﻿using AssistidCollector1.Enums;
+﻿using Acr.UserDialogs;
+using AssistidCollector1.Enums;
+using AssistidCollector1.Helpers;
 using AssistidCollector1.Models;
 using AssistidCollector1.Views;
+using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace AssistidCollector1.Tasks
@@ -135,6 +141,58 @@ namespace AssistidCollector1.Tasks
         private async void startPageButtonBottom_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new TaskHelp());
+        }
+
+        /// <summary>
+        /// Force re-sync of data
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void ToolbarItem_Clicked(object sender, EventArgs e)
+        {
+            Debug.WriteLineIf(App.Debugging, "ToolbarItem_Clicked()");
+
+            if (!CrossConnectivity.Current.IsConnected)
+            {
+                return;
+            }
+
+            int count = 0;
+
+            CancellationTokenSource cancelSrc = new CancellationTokenSource();
+            ProgressDialogConfig config = new ProgressDialogConfig()
+                .SetTitle("Syncing with server")
+                .SetIsDeterministic(true)
+                .SetMaskType(MaskType.Black)
+                .SetCancel(onCancel: cancelSrc.Cancel);
+
+            using (IProgressDialog progress = UserDialogs.Instance.Progress(config))
+            {
+                progress.PercentComplete = 0;
+
+                try
+                {
+                    List<Storage.StorageModel> currentData = await App.Database.GetDataAsync();
+
+                    if (currentData != null && currentData.Count > 0)
+                    {
+                        foreach (Storage.StorageModel currentDataPoint in currentData)
+                        {
+                            DropboxServer.UploadFile(new System.IO.MemoryStream(Encoding.UTF8.GetBytes(currentDataPoint.CSV)), currentDataPoint.ID);
+
+                            await Task.Delay(2000);
+
+                            count++;
+
+                            progress.PercentComplete = (int)(((double)count / (double)currentData.Count) * 100);
+                        }
+                    }
+                }
+                catch (Exception exc)
+                {
+                    Debug.WriteLineIf(App.Debugging, exc.ToString());
+                }
+            }
         }
     }
 }
