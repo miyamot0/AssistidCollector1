@@ -143,6 +143,8 @@ namespace AssistidCollector1.Tasks
 
         private async void earlyAwakeningButtonBottom_Clicked(object sender, EventArgs e)
         {
+            if ((sender as Button) != null) { (sender as Button).IsEnabled = false; }
+
             TimeSpan timeDifference = DateTime.Now.Subtract(startTime);
 
             CardCheckTemplate holder;

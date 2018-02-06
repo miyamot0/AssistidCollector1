@@ -127,6 +127,8 @@ namespace AssistidCollector1.Tasks
         /// <param name="e"></param>
         private async void sleepOnsetButtonBottom_Clicked(object sender, EventArgs e)
         {
+            if ((sender as Button) != null) { (sender as Button).IsEnabled = false; }
+
             TimeSpan timeDifference = DateTime.Now.Subtract(startTime);
 
             CardCheckTemplate holder;
