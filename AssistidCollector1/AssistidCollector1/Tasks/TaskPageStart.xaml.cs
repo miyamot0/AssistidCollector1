@@ -100,7 +100,7 @@ namespace AssistidCollector1.Tasks
                 switch (getCardTapped.PageId)
                 {
                     case Identifiers.Pages.Start:
-                        Debug.WriteLineIf(App.Debugging, "TODO: Go to home");
+                        /* Stubbed out */
 
                         break;
 
@@ -115,7 +115,7 @@ namespace AssistidCollector1.Tasks
                         break;
 
                     case Identifiers.Pages.CoSleeping:
-                        Debug.WriteLineIf(App.Debugging, "TODO: Go to CoSleeping");
+                        await Navigation.PushModalAsync(new TaskCosleeping());
 
                         break;
 
