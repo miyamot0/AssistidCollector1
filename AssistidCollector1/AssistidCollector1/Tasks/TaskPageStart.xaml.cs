@@ -126,7 +126,6 @@ namespace AssistidCollector1.Tasks
 
                     case Identifiers.Pages.LateOnset:
                         await Navigation.PushModalAsync(new TaskSleepOnset());
-                        //Debug.WriteLineIf(App.Debugging, "TODO: Go to LateOnset");
 
                         break;
                 }
@@ -180,7 +179,7 @@ namespace AssistidCollector1.Tasks
                         {
                             DropboxServer.UploadFile(new System.IO.MemoryStream(Encoding.UTF8.GetBytes(currentDataPoint.CSV)), currentDataPoint.ID);
 
-                            await Task.Delay(2000);
+                            await Task.Delay(App.DropboxDeltaTimeout);
 
                             count++;
 

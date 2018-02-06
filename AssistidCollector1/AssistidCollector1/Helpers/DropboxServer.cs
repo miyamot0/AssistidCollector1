@@ -20,9 +20,20 @@ namespace AssistidCollector1.Helpers
         /// <returns></returns>
         public static async Task<bool> CreateDropboxFolder()
         {
-            var response = await App.DropboxClient.Files.CreateFolderV2Async("/" + App.ApplicationId);
+            Metadata meta = await App.DropboxClient.Files.GetMetadataAsync("/" + App.ApplicationId);
 
-            return response.Metadata.IsFolder;
+            CreateFolderResult response = null;
+
+            if (!meta.IsFolder)
+            {
+                response = await App.DropboxClient.Files.CreateFolderV2Async("/" + App.ApplicationId);
+
+                return response.Metadata.IsFolder;
+            }
+            else
+            {
+                return true;
+            }            
         }
 
         /// <summary>
@@ -90,12 +101,33 @@ namespace AssistidCollector1.Helpers
         {
             Debug.WriteLineIf(App.Debugging, Settings.AppName + " >>> Downloading " + filePath);
 
-            using (var response = await App.DropboxClient.Files.DownloadAsync("/Tasks/" + filePath))
+            using (var response = await App.DropboxClient.Files.DownloadAsync("/" + filePath))
             {
                 var receivedData = await response.GetContentAsStringAsync();
 
                 DependencyService.Get<InterfaceSaveLoad>().SaveFile(filePath, receivedData);
             }
+        }
+
+        /// <summary>
+        /// Count files
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<int> CountIndividualFiles()
+        {
+            ListFolderResult response = await App.DropboxClient.Files.ListFolderAsync("/" + App.ApplicationId);
+
+            if (response == null || response.Entries.Count == 0)
+            {
+                return 0;
+            }
+
+            foreach (var index in response.Entries)
+            {
+                Debug.WriteLineIf(App.Debugging, " <<< " + index.Name);
+            }
+
+            return response.Entries.Count;
         }
 
         /// <summary>

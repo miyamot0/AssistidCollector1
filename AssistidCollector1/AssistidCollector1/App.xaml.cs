@@ -94,6 +94,8 @@ namespace AssistidCollector1
 
         public static bool Debugging = true;
 
+        public static int DropboxDeltaTimeout = 2000;
+
         public App()
         {
             InitializeComponent();
@@ -117,6 +119,9 @@ namespace AssistidCollector1
 
         protected override void OnResume() { }
 
+        /// <summary>
+        /// Re-init dropbox
+        /// </summary>
         public static void ReloadDropbox()
         {
             dropboxClient = new DropboxClient(AccessToken, new DropboxClientConfig(ApplicationName));
