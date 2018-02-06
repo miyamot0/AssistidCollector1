@@ -129,40 +129,9 @@ namespace AssistidCollector1.Tasks
         {
             if ((sender as Button) != null) { (sender as Button).IsEnabled = false; }
 
-            TimeSpan timeDifference = DateTime.Now.Subtract(startTime);
-
-            CardCheckTemplate holder;
-
-            bool isChecked;
-            string currentTitle;
-            int counter = 0;
-
-            string returnString = "Data,Value" + Environment.NewLine;
-
-            returnString = "Intervention,Sleep Onset" + Environment.NewLine;
-
-            foreach (var child in sleepOnsetStackContent.Children)
-            {
-                holder = child as CardCheckTemplate;
-
-                if (holder != null)
-                {
-                    isChecked = ViewTools.GetSwitchValue(holder.grid);
-                    currentTitle = taskModels[counter].PageTitle;
-
-                    Debug.WriteLineIf(App.Debugging, currentTitle + " = " + isChecked);
-
-                    returnString += currentTitle + ",";
-                    returnString += (isChecked) ? "True" : "False";
-                    returnString += Environment.NewLine;
-
-                    counter++;    
-                }
-            }
-
-            returnString += "Date," + startTime.Date.ToString() + Environment.NewLine;
-            returnString += "Start," + startTime.TimeOfDay.ToString() + Environment.NewLine;
-            returnString += "Seconds," + timeDifference.TotalSeconds.ToString() + Environment.NewLine;
+            string returnString = ViewTools.CommaSeparatedValue("Data,Value", "Intervention,Early Morning Awakening",
+                sleepOnsetStackContent, taskModels,
+                startTime, DateTime.Now.Subtract(startTime));
 
             int result = await App.Database.SaveItemAsync(new StorageModel()
             {
