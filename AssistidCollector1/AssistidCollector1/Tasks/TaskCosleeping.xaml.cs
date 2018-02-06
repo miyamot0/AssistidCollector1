@@ -256,19 +256,6 @@ namespace AssistidCollector1.Tasks
                 Intervention = "Cosleeping Intervention"
             });
 
-            List<StorageModel> allSavedData = await App.Database.GetDataAsync();
-
-            int number = 0;
-
-            if (allSavedData == null || allSavedData.Count == 0)
-            {
-                number = 0;
-            }
-            else
-            {
-                number = allSavedData.Count - 1;
-            }
-
             if (CrossConnectivity.Current.IsConnected)
             {
                 CancellationTokenSource cancelSrc = new CancellationTokenSource();
@@ -280,7 +267,7 @@ namespace AssistidCollector1.Tasks
 
                 using (IProgressDialog progress = UserDialogs.Instance.Progress(config))
                 {
-                    await DropboxServer.UploadFile(new System.IO.MemoryStream(Encoding.UTF8.GetBytes(returnString)), number);
+                    await DropboxServer.UploadFile(new System.IO.MemoryStream(Encoding.UTF8.GetBytes(returnString)), App.Database.GetLargestID());
 
                     await Task.Delay(100);
                 }

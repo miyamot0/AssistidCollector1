@@ -1,5 +1,6 @@
 ﻿using SQLite;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AssistidCollector1.Storage
@@ -38,6 +39,22 @@ namespace AssistidCollector1.Storage
         public Task<List<StorageModel>> GetDataAsync()
         {
             return database.Table<StorageModel>().ToListAsync();
+        }
+
+        /// <summary>
+        /// Get largest ID
+        /// </summary>
+        /// <returns></returns>
+        public int GetLargestID()
+        {
+            try
+            {
+                return GetDataAsync().Result.Aggregate((i1, i2) => i1.ID > i2.ID ? i1 : i2).ID;
+            }
+            catch
+            {
+                return 0;
+            }
         }
 
         /// <summary>
