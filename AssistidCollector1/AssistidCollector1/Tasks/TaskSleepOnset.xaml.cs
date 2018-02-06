@@ -147,7 +147,7 @@ namespace AssistidCollector1.Tasks
 
                 if (holder != null)
                 {
-                    isChecked = getSwitchValue(holder.grid);
+                    isChecked = ViewTools.GetSwitchValue(holder.grid);
                     currentTitle = taskModels[counter].PageTitle;
 
                     Debug.WriteLineIf(App.Debugging, currentTitle + " = " + isChecked);
@@ -188,28 +188,6 @@ namespace AssistidCollector1.Tasks
             }
 
             await Navigation.PopModalAsync();
-        }
-
-        /// <summary>
-        /// Get Value of Switch
-        /// </summary>
-        /// <param name="grid"></param>
-        /// <returns></returns>
-        private bool getSwitchValue(Grid grid)
-        {
-            Switch temp;
-
-            foreach (var child in grid.Children)
-            {
-                temp = child as Switch;
-
-                if (temp != null)
-                {
-                    return temp.IsToggled;
-                }
-            }
-
-            return false;
         }
     }
 }
