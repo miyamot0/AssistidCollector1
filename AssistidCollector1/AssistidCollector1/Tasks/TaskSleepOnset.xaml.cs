@@ -7,7 +7,6 @@ using AssistidCollector1.Views;
 using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -129,7 +128,7 @@ namespace AssistidCollector1.Tasks
         {
             if ((sender as Button) != null) { (sender as Button).IsEnabled = false; }
 
-            string returnString = ViewTools.CommaSeparatedValue("Data,Value", "Intervention,Early Morning Awakening",
+            string returnString = ViewTools.CommaSeparatedValue("Data,Value", "Intervention,Sleep Onset",
                 sleepOnsetStackContent, taskModels,
                 startTime, DateTime.Now.Subtract(startTime));
 

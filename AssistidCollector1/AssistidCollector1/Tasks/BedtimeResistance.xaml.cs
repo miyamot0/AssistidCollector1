@@ -10,20 +10,18 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+
 using Xamarin.Forms;
 
 namespace AssistidCollector1.Tasks
 {
-    public partial class TaskCosleeping : ContentPage
+    public partial class BedtimeResistance : ContentPage
     {
         List<SleepTasks> taskModels;
         CardCheckTemplate cardCheckTemplate;
         DateTime startTime;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public TaskCosleeping()
+        public BedtimeResistance()
         {
             InitializeComponent();
 
@@ -33,46 +31,81 @@ namespace AssistidCollector1.Tasks
 
             taskModels.Add(new SleepTasks()
             {
-                PageId = Identifiers.Pages.CoSleeping,
-                PageTitle = "Graduated Extinction: Step 1",
-                PageDescription = "Child goes to their own bed and parent sits on the child’s bed, or on a chair next to the bed, and remains until the child falls asleep.",
+                PageId = Identifiers.Pages.BedtimeResistance,
+                PageTitle = "Bedtime Pass: Step 1",
+                PageDescription = "Establish a regular bedtime routine.",
             });
 
             taskModels.Add(new SleepTasks()
             {
-                PageId = Identifiers.Pages.CoSleeping,
-                PageTitle = "Graduated Extinction: Step 2",
-                PageDescription = "Parent then moves away from the bed and closer to the bedroom door, until the child falls asleep.",
+                PageId = Identifiers.Pages.BedtimeResistance,
+                PageTitle = "Bedtime Pass: Step 2",
+                PageDescription = "Put child to bed at the same time every night.",
             });
 
             taskModels.Add(new SleepTasks()
             {
-                PageId = Identifiers.Pages.CoSleeping,
-                PageTitle = "Graduated Extinction: Step 3",
-                PageDescription = "Parent sits in the doorway and remains there until the child falls asleep.",
+                PageId = Identifiers.Pages.BedtimeResistance,
+                PageTitle = "Bedtime Pass: Step 3",
+                PageDescription = "Give him/her 2 bedtime passes.",
             });
 
             taskModels.Add(new SleepTasks()
             {
-                PageId = Identifiers.Pages.CoSleeping,
-                PageTitle = "Graduated Extinction: Step 4",
-                PageDescription = "Parent sits outside of the child’s bedroom out of view of the child.",
+                PageId = Identifiers.Pages.BedtimeResistance,
+                PageTitle = "Bedtime Pass: Step 4",
+                PageDescription = "When child leaves his/her room s/he must surrender a pass.",
             });
 
             taskModels.Add(new SleepTasks()
             {
-                PageId = Identifiers.Pages.CoSleeping,
-                PageTitle = "Graduated Extinction: Step 5",
-                PageDescription = "Parent starts to take breaks that increase in length until the child is consistently falling asleep without the parent present in the hallway.",
+                PageId = Identifiers.Pages.BedtimeResistance,
+                PageTitle = "Bedtime Pass: Step 4a",
+                PageDescription = "1 pass gets one “free trip” out of the room or one parent visit.",
+            });
+            
+            taskModels.Add(new SleepTasks()
+            {
+                PageId = Identifiers.Pages.BedtimeResistance,
+                PageTitle = "Bedtime Pass: Step 4b",
+                PageDescription = "Visits should be short (less than 3 minutes) & have a specific purpose(drink, hug).",
+            });
+            
+            taskModels.Add(new SleepTasks()
+            {
+                PageId = Identifiers.Pages.BedtimeResistance,
+                PageTitle = "Bedtime Pass: Step 5",
+                PageDescription = "Once passes are gone ignore all bids for attention.",
             });
 
             taskModels.Add(new SleepTasks()
             {
-                PageId = Identifiers.Pages.CoSleeping,
-                PageTitle = "Graduated Extinction: Step 6",
-                PageDescription = "Be consistent in your approach and if your child leaves their bedroom through the night calmly and quietly  return the child every time, and simply state that it’s still night-time, go back to sleep.",
+                PageId = Identifiers.Pages.BedtimeResistance,
+                PageTitle = "Bedtime Pass: Step 5a",
+                PageDescription = "If child leaves their room after all their passes are gone, guide them calmly back to the room while ignoring them(no speaking, avoid looking at them).",
             });
 
+            taskModels.Add(new SleepTasks()
+            {
+                PageId = Identifiers.Pages.BedtimeResistance,
+                PageTitle = "Bedtime Pass: Step 6",
+                PageDescription = "Allow the child to select a prize/reward in the morning if they have one or more un-used passes from the previous night.",
+            });
+
+            taskModels.Add(new SleepTasks()
+            {
+                PageId = Identifiers.Pages.BedtimeResistance,
+                PageTitle = "Bedtime Pass: Step 7",
+                PageDescription = "Repeat each night consistently.",
+            });
+
+            taskModels.Add(new SleepTasks()
+            {
+                PageId = Identifiers.Pages.BedtimeResistance,
+                PageTitle = "Bedtime Pass: Step 8",
+                PageDescription = "Reduce to 1 bedtime pass.",
+            });
+            
             taskModels.Add(new SleepTasks()
             {
                 PageId = Identifiers.Pages.CoSleeping,
@@ -209,27 +242,22 @@ namespace AssistidCollector1.Tasks
             foreach (SleepTasks item in taskModels)
             {
                 cardCheckTemplate = new CardCheckTemplate(item.PageTitle, item.PageDescription);
-                coSleepingStackContent.Children.Add(cardCheckTemplate);
+                bedtimeResistanceStackContent.Children.Add(cardCheckTemplate);
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private async void coSleepingButtonBottom_Clicked(object sender, EventArgs e)
+        private async void bedtimeResistanceButtonBottom_Clicked(object sender, EventArgs e)
         {
             if ((sender as Button) != null) { (sender as Button).IsEnabled = false; }
 
-            string returnString = ViewTools.CommaSeparatedValue("Data,Value", "Intervention,Cosleeping Intervention",
-                coSleepingStackContent, taskModels,
+            string returnString = ViewTools.CommaSeparatedValue("Data,Value", "Intervention,Bedtime Resistance",
+                bedtimeResistanceStackContent, taskModels,
                 startTime, DateTime.Now.Subtract(startTime));
 
             int result = await App.Database.SaveItemAsync(new StorageModel()
             {
                 CSV = returnString,
-                Intervention = "Cosleeping Intervention"
+                Intervention = "Bedtime Resistance"
             });
 
             if (CrossConnectivity.Current.IsConnected)

@@ -52,6 +52,9 @@
     <Compile Include="Storage\ApplicationDatabase.cs" />
     <Compile Include="Storage\ManifestModel.cs" />
     <Compile Include="Storage\StorageModel.cs" />
+    <Compile Include="Tasks\BedtimeResistance.xaml.cs">
+      <DependentUpon>BedtimeResistance.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tasks\TaskCosleeping.xaml.cs">
       <DependentUpon>TaskCosleeping.xaml</DependentUpon>
     </Compile>
@@ -185,6 +188,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Tasks\TaskNightAwakening.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tasks\BedtimeResistance.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

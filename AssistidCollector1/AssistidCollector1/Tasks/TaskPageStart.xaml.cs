@@ -110,7 +110,7 @@ namespace AssistidCollector1.Tasks
                         break;
 
                     case Identifiers.Pages.BedtimeResistance:
-                        Debug.WriteLineIf(App.Debugging, "TODO: Go to BedtimeResistance");
+                        await Navigation.PushModalAsync(new BedtimeResistance());
 
                         break;
 
