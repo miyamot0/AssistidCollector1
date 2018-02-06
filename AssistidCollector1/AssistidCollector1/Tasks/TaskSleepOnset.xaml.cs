@@ -1,12 +1,16 @@
-﻿using AssistidCollector1.Enums;
+﻿using Acr.UserDialogs;
+using AssistidCollector1.Enums;
 using AssistidCollector1.Helpers;
 using AssistidCollector1.Models;
 using AssistidCollector1.Storage;
 using AssistidCollector1.Views;
+using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace AssistidCollector1.Tasks
@@ -133,6 +137,8 @@ namespace AssistidCollector1.Tasks
 
             string returnString = "Data,Value" + Environment.NewLine;
 
+            returnString = "Intervention,Sleep Onset" + Environment.NewLine;
+
             foreach (var child in sleepOnsetStackContent.Children)
             {
                 holder = child as CardCheckTemplate;
@@ -158,12 +164,39 @@ namespace AssistidCollector1.Tasks
 
             int result = await App.Database.SaveItemAsync(new StorageModel()
             {
-                CSV = returnString
+                CSV = returnString,
+                Intervention = "Sleep Onset"
             });
 
             List<StorageModel> allSavedData = await App.Database.GetDataAsync();
 
-            DropboxServer.UploadFile(new System.IO.MemoryStream(Encoding.UTF8.GetBytes(returnString)), allSavedData.Count - 1);
+            int number = 0;
+
+            if (allSavedData == null || allSavedData.Count == 0)
+            {
+                number = 0;
+            }
+            else
+            {
+                number = allSavedData.Count - 1;
+            }
+
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                CancellationTokenSource cancelSrc = new CancellationTokenSource();
+                ProgressDialogConfig config = new ProgressDialogConfig()
+                    .SetTitle("Uploading to Server")
+                    .SetIsDeterministic(false)
+                    .SetMaskType(MaskType.Black)
+                    .SetCancel(onCancel: cancelSrc.Cancel);
+
+                using (IProgressDialog progress = UserDialogs.Instance.Progress(config))
+                {
+                    await DropboxServer.UploadFile(new System.IO.MemoryStream(Encoding.UTF8.GetBytes(returnString)), number);
+
+                    await Task.Delay(100);
+                }
+            }
 
             await Navigation.PopModalAsync();
         }

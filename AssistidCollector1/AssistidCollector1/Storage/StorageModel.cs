@@ -7,6 +7,8 @@ namespace AssistidCollector1.Storage
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
 
+        public string Intervention { get; set; }
+
         public string CSV { get; set; }
     }
 }

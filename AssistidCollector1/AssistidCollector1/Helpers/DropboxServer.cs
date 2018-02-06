@@ -20,6 +20,8 @@ namespace AssistidCollector1.Helpers
         /// <returns></returns>
         public static async Task<bool> CreateDropboxFolder()
         {
+            await Task.Delay(App.DropboxDeltaTimeout);
+
             Metadata meta = await App.DropboxClient.Files.GetMetadataAsync("/" + App.ApplicationId);
 
             CreateFolderResult response = null;
@@ -51,6 +53,8 @@ namespace AssistidCollector1.Helpers
         /// <returns></returns>
         public static async Task DownloadManifest(Manifest currentManifest)
         {
+            await Task.Delay(App.DropboxDeltaTimeout);
+
             Debug.WriteLineIf(App.Debugging, "DownloadManifest() <<< Downloading Manifest ...");
 
             using (var response = await App.DropboxClient.Files.DownloadAsync("/Manifest.json"))
@@ -113,13 +117,15 @@ namespace AssistidCollector1.Helpers
         /// Count files
         /// </summary>
         /// <returns></returns>
-        public static async Task<int> CountIndividualFiles()
+        public static async Task<ListFolderResult> CountIndividualFiles()
         {
+            await Task.Delay(App.DropboxDeltaTimeout);
+
             ListFolderResult response = await App.DropboxClient.Files.ListFolderAsync("/" + App.ApplicationId);
 
             if (response == null || response.Entries.Count == 0)
             {
-                return 0;
+                return null;
             }
 
             foreach (var index in response.Entries)
@@ -127,7 +133,7 @@ namespace AssistidCollector1.Helpers
                 Debug.WriteLineIf(App.Debugging, " <<< " + index.Name);
             }
 
-            return response.Entries.Count;
+            return response;
         }
 
         /// <summary>
@@ -135,11 +141,15 @@ namespace AssistidCollector1.Helpers
         /// </summary>
         /// <param name="stream"></param>
         /// <param name="fileNumber"></param>
-        public static async void UploadFile(System.IO.MemoryStream stream, int fileNumber)
+        public static async Task<string> UploadFile(System.IO.MemoryStream stream, int fileNumber)
         {
+            await Task.Delay(App.DropboxDeltaTimeout);
+
             string filePath = "/" + App.ApplicationId + "/" + App.ApplicationId + "_" + fileNumber.ToString("d4") + ".csv";
 
-            await UploadFile(stream, filePath);
+            string result = await UploadFile(stream, filePath);
+
+            return result;
         }
 
         /// <summary>

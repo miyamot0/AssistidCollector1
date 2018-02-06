@@ -120,7 +120,7 @@ namespace AssistidCollector1.Tasks
                         break;
 
                     case Identifiers.Pages.EarlyMorningAwakenings:
-                        Debug.WriteLineIf(App.Debugging, "TODO: Go to EarlyMorningAwakenings");
+                        await Navigation.PushModalAsync(new TaskMorningAwakening());
 
                         break;
 

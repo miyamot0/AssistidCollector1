@@ -2,6 +2,7 @@
 using AssistidCollector1.Helpers;
 using AssistidCollector1.Models;
 using AssistidCollector1.Tasks;
+using Dropbox.Api.Files;
 using Newtonsoft.Json;
 using Plugin.Connectivity;
 using System;
@@ -111,29 +112,40 @@ namespace AssistidCollector1.Pages
 
                     if (CrossConnectivity.Current.IsConnected)
                     {
-                        await Task.Delay(App.DropboxDeltaTimeout);
-
                         bool createdFolder = await DropboxServer.CreateDropboxFolder();
 
-                        await Task.Delay(App.DropboxDeltaTimeout);
+                        count += 1.0;
+
+                        progress.PercentComplete = (int)((count / steps) * 100);
+
+                        ListFolderResult filesExisting = await DropboxServer.CountIndividualFiles();
+
+                        int filesUploaded = filesExisting.Entries.Count;
 
                         count += 1.0;
 
                         progress.PercentComplete = (int)((count / steps) * 100);
 
-                        int filesUploaded = await DropboxServer.CountIndividualFiles();
-
-                        count += 1.0;
-
-                        progress.PercentComplete = (int)((count / steps) * 100);
+                        bool missingInList = true;
 
                         if (currentItems != null && currentItems.Count != filesUploaded)
                         {
                             foreach (Storage.StorageModel currentDataPoint in currentItems)
                             {
-                                DropboxServer.UploadFile(new System.IO.MemoryStream(Encoding.UTF8.GetBytes(currentDataPoint.CSV)), currentDataPoint.ID);
+                                missingInList = true;
 
-                                await Task.Delay(App.DropboxDeltaTimeout);
+                                foreach (var file in filesExisting.Entries)
+                                {
+                                    if (file.Name.Contains(App.ApplicationId + "_" + currentDataPoint.ID.ToString("d4")))
+                                    {
+                                        missingInList = false;
+                                    }
+                                }
+
+                                if (missingInList)
+                                {
+                                    await DropboxServer.UploadFile(new System.IO.MemoryStream(Encoding.UTF8.GetBytes(currentDataPoint.CSV)), currentDataPoint.ID);
+                                }
 
                                 count += 1.0;
 
