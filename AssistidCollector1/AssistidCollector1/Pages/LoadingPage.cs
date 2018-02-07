@@ -60,8 +60,6 @@ namespace AssistidCollector1.Pages
                     }
                 }
             };
-
-            //CheckCredentials();            
         }
 
         protected override void OnAppearing()
