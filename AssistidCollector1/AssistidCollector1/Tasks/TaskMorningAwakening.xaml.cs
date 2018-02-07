@@ -146,7 +146,9 @@ namespace AssistidCollector1.Tasks
                 Strategy = Identifiers.Strategies.SleepHygiene,
                 PageTitle = "Avoid caffeine",
                 PageDescription = "Avoid caffeine particularly close to bedtime, as it could make it more difficult for your child to fall asleep. Caffeine is often found in tea, chocolate and fizzy drinks.",
-            });            
+            });
+
+            ContentHelper.AddSleepRelaxationContent(taskModels);
 
             foreach (SleepTasks item in taskModels)
             {
