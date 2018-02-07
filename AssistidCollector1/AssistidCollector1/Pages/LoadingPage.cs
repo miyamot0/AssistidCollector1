@@ -157,7 +157,7 @@ namespace AssistidCollector1.Pages
                 }
 
                 App.Current.MainPage = new NavigationPage(new TaskPageStart());
-            }
+            }            
         }
     }
 }
