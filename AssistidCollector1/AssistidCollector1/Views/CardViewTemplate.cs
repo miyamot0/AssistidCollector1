@@ -35,7 +35,7 @@ namespace AssistidCollector1.Views
                 }
             };
 
-            grid.Children.Add(new CardStatusView(), 0, 1, 0, 2);            
+            grid.Children.Add(new CardStatusView(sleepTask.Strategy), 0, 1, 0, 2);            
             grid.Children.Add(new Image()
             {
                 Source = sleepTask.PageImage,

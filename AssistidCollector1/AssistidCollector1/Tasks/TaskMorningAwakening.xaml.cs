@@ -31,6 +31,7 @@ namespace AssistidCollector1.Tasks
             taskModels.Add(new SleepTasks()
             {
                 PageId = Identifiers.Pages.EarlyMorningAwakenings,
+                Strategy = Identifiers.Strategies.Specific,
                 PageTitle = "Manage Sleep Environment",
                 PageDescription = "Sleep environment should be the same in the morning as at bedtime, with no cues that it is daytime.",
             });
@@ -38,6 +39,7 @@ namespace AssistidCollector1.Tasks
             taskModels.Add(new SleepTasks()
             {
                 PageId = Identifiers.Pages.EarlyMorningAwakenings,
+                Strategy = Identifiers.Strategies.Specific,
                 PageTitle = "Address Sleep Motivation",
                 PageDescription = "Decrease reinforcement for early awakening (child may play quietly in their room), but may not leave the bedroom.",
             });
@@ -45,6 +47,7 @@ namespace AssistidCollector1.Tasks
             taskModels.Add(new SleepTasks()
             {
                 PageId = Identifiers.Pages.EarlyMorningAwakenings,
+                Strategy = Identifiers.Strategies.Specific,
                 PageTitle = "Detecting Sleep Avoidance",
                 PageDescription = "Use an inexpensive motion detector to signal when the child leaves the room. (Something like chimes/bells).",
             });
@@ -52,6 +55,7 @@ namespace AssistidCollector1.Tasks
             taskModels.Add(new SleepTasks()
             {
                 PageId = Identifiers.Pages.EarlyMorningAwakenings,
+                Strategy = Identifiers.Strategies.Specific,
                 PageTitle = "Maintaining Expectations for Sleep Behavior",
                 PageDescription = "If the child awakens early than scheduled, return the child to their bedroom and simply state “it's still night-time, go back to sleep.",
             });
@@ -59,6 +63,7 @@ namespace AssistidCollector1.Tasks
             taskModels.Add(new SleepTasks()
             {
                 PageId = Identifiers.Pages.EarlyMorningAwakenings,
+                Strategy = Identifiers.Strategies.Specific,
                 PageTitle = "Napping Behavior",
                 PageDescription = "Decrease day time napping.",
             });
@@ -66,6 +71,7 @@ namespace AssistidCollector1.Tasks
             taskModels.Add(new SleepTasks()
             {
                 PageId = Identifiers.Pages.EarlyMorningAwakenings,
+                Strategy = Identifiers.Strategies.Specific,
                 PageTitle = "Waking Behavior",
                 PageDescription = "Establish a consistent wake time, use audible and/or visual cues to signal wake time. When the alarm goes off, enter the child’s bedroom and open the curtains, saying “it’s time to wake up.",
             });
@@ -73,6 +79,7 @@ namespace AssistidCollector1.Tasks
             taskModels.Add(new SleepTasks()
             {
                 PageId = Identifiers.Pages.EarlyMorningAwakenings,
+                Strategy = Identifiers.Strategies.SleepHygiene,
                 PageTitle = "Modifying Sleep Conditions",
                 PageDescription = "Gradually delay the stimulus (start time of day) by 15 minutes every 2-3 days.",
             });
@@ -80,6 +87,7 @@ namespace AssistidCollector1.Tasks
             taskModels.Add(new SleepTasks()
             {
                 PageId = Identifiers.Pages.EarlyMorningAwakenings,
+                Strategy = Identifiers.Strategies.SleepHygiene,
                 PageTitle = "Sleep Environment",
                 PageDescription = "The bedroom environment should be dark, quiet, and cool to minimize distractions. Children with autism may be particularly sensitive to these sources of distraction.",
             });
@@ -87,6 +95,7 @@ namespace AssistidCollector1.Tasks
             taskModels.Add(new SleepTasks()
             {
                 PageId = Identifiers.Pages.EarlyMorningAwakenings,
+                Strategy = Identifiers.Strategies.SleepHygiene,
                 PageTitle = "Bedtime Routine",
                 PageDescription = "Develop a consistent timeline for bedtime routines and stick to them.",
             });
@@ -94,6 +103,7 @@ namespace AssistidCollector1.Tasks
             taskModels.Add(new SleepTasks()
             {
                 PageId = Identifiers.Pages.EarlyMorningAwakenings,
+                Strategy = Identifiers.Strategies.SleepHygiene,
                 PageTitle = "Establish a Reasonable Bedtime",
                 PageDescription = "Tell your child when it is and, under normal circumstances, put your child to bed at that time every night.",
             });
@@ -101,6 +111,7 @@ namespace AssistidCollector1.Tasks
             taskModels.Add(new SleepTasks()
             {
                 PageId = Identifiers.Pages.EarlyMorningAwakenings,
+                Strategy = Identifiers.Strategies.SleepHygiene,
                 PageTitle = "Quiet Time",
                 PageDescription = "Institute a \"Quiet Time\" 20-30 minutes before bedtime. During this time, your child can engage in quiet activities such as reading while avoiding activities such as screen time.",
             });
@@ -108,6 +119,7 @@ namespace AssistidCollector1.Tasks
             taskModels.Add(new SleepTasks()
             {
                 PageId = Identifiers.Pages.EarlyMorningAwakenings,
+                Strategy = Identifiers.Strategies.SleepHygiene,
                 PageTitle = "Preparing for Bed",
                 PageDescription = "A bedtime routine involves preparing for bed (such as getting into pajamas, brushing teeth, going to the bathroom, last drink of water) and activities to relax your children. The bedtime routine, once established, will become a powerful signal to your child that the time for sleep has come.",
             });
@@ -115,6 +127,7 @@ namespace AssistidCollector1.Tasks
             taskModels.Add(new SleepTasks()
             {
                 PageId = Identifiers.Pages.EarlyMorningAwakenings,
+                Strategy = Identifiers.Strategies.SleepHygiene,
                 PageTitle = "Sleep and Wake schedule",
                 PageDescription = "The schedule should be regular with not much of a difference between the weekday and weekend schedule.",
             });
@@ -122,6 +135,7 @@ namespace AssistidCollector1.Tasks
             taskModels.Add(new SleepTasks()
             {
                 PageId = Identifiers.Pages.EarlyMorningAwakenings,
+                Strategy = Identifiers.Strategies.SleepHygiene,
                 PageTitle = "Morning Awakening Time",
                 PageDescription = "Keep morning awakening time consistent and reduce or avoid daytime naps so the child does not 'make up' for lost sleep following a difficult night. This will increase the likelihood that they will fall asleep more quickly the next evening.",
             });
@@ -129,13 +143,14 @@ namespace AssistidCollector1.Tasks
             taskModels.Add(new SleepTasks()
             {
                 PageId = Identifiers.Pages.EarlyMorningAwakenings,
+                Strategy = Identifiers.Strategies.SleepHygiene,
                 PageTitle = "Avoid caffeine",
                 PageDescription = "Avoid caffeine particularly close to bedtime, as it could make it more difficult for your child to fall asleep. Caffeine is often found in tea, chocolate and fizzy drinks.",
             });            
 
             foreach (SleepTasks item in taskModels)
             {
-                cardCheckTemplate = new CardCheckTemplate(item.PageTitle, item.PageDescription);
+                cardCheckTemplate = new CardCheckTemplate(item.PageTitle, item.PageDescription, item.Strategy);
                 earlyAwakeningStackContent.Children.Add(cardCheckTemplate);
             }
         }

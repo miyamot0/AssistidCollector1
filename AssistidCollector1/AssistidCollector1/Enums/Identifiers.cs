@@ -13,6 +13,16 @@
             CoSleeping,
             LateOnset,
             EarlyMorningAwakenings
-        }   
+        }
+
+        /// <summary>
+        /// Stategy Identifiers
+        /// </summary>
+        public enum Strategies
+        {
+            Specific,
+            SleepHygiene,
+            Relaxation
+        }
     }
 }

@@ -8,6 +8,7 @@ namespace AssistidCollector1.Models
     public class SleepTasks
     {
         public Identifiers.Pages PageId;
+        public Identifiers.Strategies Strategy;
         public string PageTitle;
         public string PageDescription;
         public string PageButton;

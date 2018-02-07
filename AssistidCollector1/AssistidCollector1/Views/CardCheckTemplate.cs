@@ -8,7 +8,7 @@ namespace AssistidCollector1.Views
         public Identifiers.Pages PageId = Identifiers.Pages.LateOnset;
         public Grid grid;
 
-        public CardCheckTemplate(string title, string instructions)
+        public CardCheckTemplate(string title, string instructions, Identifiers.Strategies strategyType)
         {
             grid = new Grid
             {
@@ -30,7 +30,7 @@ namespace AssistidCollector1.Views
                 }
             };
 
-            grid.Children.Add(new CardStatusView(), 0, 1, 0, 2);
+            grid.Children.Add(new CardStatusView(strategyType), 0, 1, 0, 2);
 
             grid.Children.Add(new Switch
             {
