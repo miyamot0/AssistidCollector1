@@ -39,6 +39,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using System.Diagnostics;
 
 namespace AssistidCollector1.Tasks
 {
@@ -167,6 +168,8 @@ namespace AssistidCollector1.Tasks
             string returnString = ViewTools.CommaSeparatedValue("Data,Value", "Intervention,Bedtime Resistance",
                 bedtimeResistanceStackContent, taskModels,
                 startTime, DateTime.Now.Subtract(startTime));
+
+            Debug.WriteLineIf(App.Debugging, returnString);
 
             int result = await App.Database.SaveItemAsync(new StorageModel()
             {

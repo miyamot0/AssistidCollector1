@@ -37,6 +37,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Collections.Generic;
+using AssistidCollector1.Storage;
 using Xamarin.Forms;
 
 namespace AssistidCollector1.Pages
@@ -142,7 +144,21 @@ namespace AssistidCollector1.Pages
 
                     progress.Title = "Polling local database";
 
-                    var currentItems = await App.Database.GetDataAsync();
+                    List<StorageModel> currentItems = null;
+
+                    try
+                    {
+                        currentItems = await App.Database.GetDataAsync();
+                    }
+                    catch (Exception e)
+                    {
+                        // Gracefully fail here
+
+                        currentItems = null;
+
+                        Debug.WriteLineIf(App.Debugging, e.ToString());
+                    }
+
 
                     progress.Title = "Polling remote database";
 
