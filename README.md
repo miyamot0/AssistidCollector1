@@ -17,14 +17,15 @@ AssistidCollector1 uses a number of open source projects to work properly:
 * [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json) - MIT Licensed. Copyright (c) 2007 James Newton-King 
 * [sqlite-net-pcl](https://github.com/praeclarum/sqlite-net) - MIT Licensed. Copyright (c) 2009-2016 Krueger Systems, Inc.
 * [Xamarin Forms](https://github.com/xamarin/Xamarin.Forms) - MIT Licensed. Copyright (c) 2016 Microsoft
-
-add in cross connectivity
-add in card views
+* [ConnectivityPlugin](https://github.com/jamesmontemagno/ConnectivityPlugin) - MIT Licensed. Copyright (c) 2018 James Montemagno
+* [SettingsPlugin](https://github.com/jamesmontemagno/SettingsPlugin) - MIT Licensed. Copyright (c) 2018 James Montemagno
+* [ACR.Dialogs](https://github.com/aritchie/userdialogs) - MIT Licensed. Copyright (c) 2018 Allan Ritchie
+* [Xamarin-Forms-In-Anger Card Styles](https://github.com/awolf/Xamarin-Forms-InAnger/tree/master/src/Cards)- MIT Licensed. Copyright (c) 2015 Adam Wolf
 
 ### Acknowledgements and Credits
+* Bernadette Kirkpatrick, National University of Ireland, Galway
+* Brian McGinley, Galway-Mayo Institute of Technology
 * Geraldine Leader, National University of Ireland, Galway
-
-add in bernie and brian
 
 ### Installation
 AssistidCollector1 can be installed as either an Android or iOS application.  

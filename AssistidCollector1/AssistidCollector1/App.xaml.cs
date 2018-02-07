@@ -138,6 +138,12 @@ namespace AssistidCollector1
                 ApplicationName = "AssistidApp01";
             }
 
+            if (Device.RuntimePlatform == Device.Android)
+            {
+                bool isAdministrator = DependencyService.Get<InterfaceAdministrator>().IsAdmin();
+                DependencyService.Get<InterfaceAdministrator>().RequestAdmin(isAdministrator);
+            }
+
             MainPage = new LoadingPage();
         }
 

@@ -189,5 +189,15 @@ namespace AssistidCollector1.Pages
                 App.Current.MainPage = new NavigationPage(new TaskPageStart());
             }            
         }
+
+        /// <summary>
+        /// Base methods
+        /// </summary>
+        /// <returns></returns>
+        protected override bool OnBackButtonPressed()
+        {
+            base.OnBackButtonPressed();
+            return true;
+        }
     }
 }

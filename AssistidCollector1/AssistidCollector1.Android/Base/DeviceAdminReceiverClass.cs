@@ -1,5 +1,5 @@
 ﻿//----------------------------------------------------------------------------------------------
-// <copyright file="ImplementationContentLocation.cs" 
+// <copyright file="DeviceAdminReceiverClass.cs" 
 // Copyright February 2, 2018 Shawn Gilroy
 //
 // This file is part of AssistidCollector2
@@ -25,23 +25,17 @@
 // </summary>
 //----------------------------------------------------------------------------------------------
 
-using AssistidCollector1.Interfaces;
-using AssistidCollector1.Droid.Implementations;
-using Xamarin.Forms;
+using Android.App;
+using Android.Content;
+using Android.App.Admin;
 
-[assembly: Dependency(typeof(ImplementationContentLocation))]
-namespace AssistidCollector1.Droid.Implementations
+namespace AssistidCollector1.Droid.Base
 {
-    public class ImplementationContentLocation : InterfaceContentLocation
-    {
-        public string GetBaseLocation()
-        {
-            return "file:///android_asset/";
-        }
-
-        public string GetPersonalLocation()
-        {
-            return System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-        }
-    }
+    /// <summary>
+    /// Device admin receiver class.
+    /// </summary>
+    [BroadcastReceiver(Permission = "android.permission.BIND_DEVICE_ADMIN", Name = "com.smallnstats.AssistidCollector1.Base.DeviceAdminReceiverClass")]
+    [MetaData("android.app.device_admin", Resource = "@xml/admin")]
+    [IntentFilter(new[] { "android.app.action.DEVICE_ADMIN_ENABLED", Intent.ActionMain })]
+    public class DeviceAdminReceiverClass : DeviceAdminReceiver { }
 }

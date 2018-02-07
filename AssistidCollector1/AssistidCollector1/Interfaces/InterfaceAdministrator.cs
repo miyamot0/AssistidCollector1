@@ -1,5 +1,5 @@
 ﻿//----------------------------------------------------------------------------------------------
-// <copyright file="ImplementationContentLocation.cs" 
+// <copyright file="InterfaceAdministrator.cs" 
 // Copyright February 2, 2018 Shawn Gilroy
 //
 // This file is part of AssistidCollector2
@@ -18,30 +18,19 @@
 // </copyright>
 //
 // <summary>
-// The AssistidCollector2 is a tool to assist clinicans and researchers in the treatment of various disorders.
+// The AssistidCollector2 is a tool to assist clinicans and researchers in the treatment of communication disorders.
 // 
 // Email: shawn(dot)gilroy(at)temple.edu
 //
 // </summary>
 //----------------------------------------------------------------------------------------------
 
-using AssistidCollector1.Interfaces;
-using AssistidCollector1.Droid.Implementations;
-using Xamarin.Forms;
-
-[assembly: Dependency(typeof(ImplementationContentLocation))]
-namespace AssistidCollector1.Droid.Implementations
+namespace AssistidCollector1.Interfaces
 {
-    public class ImplementationContentLocation : InterfaceContentLocation
+    public interface InterfaceAdministrator
     {
-        public string GetBaseLocation()
-        {
-            return "file:///android_asset/";
-        }
-
-        public string GetPersonalLocation()
-        {
-            return System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-        }
+        void AccessSettings();
+        void RequestAdmin(bool status);
+        bool IsAdmin();
     }
 }

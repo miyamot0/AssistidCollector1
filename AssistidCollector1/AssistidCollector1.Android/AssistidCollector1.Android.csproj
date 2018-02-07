@@ -226,7 +226,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\DeviceAdminReceiverClass.cs" />
     <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Implementations\ImplementationAdministrator.cs" />
     <Compile Include="Implementations\ImplementationContentLocation.cs" />
     <Compile Include="Implementations\ImplementationSaveLoad.cs" />
     <Compile Include="MainActivity.cs" />
@@ -279,6 +281,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\splash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\xml\admin.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Android.Support.Animated.Vector.Drawable.25.4.0.2\build\MonoAndroid70\Xamarin.Android.Support.Animated.Vector.Drawable.targets" Condition="Exists('..\..\packages\Xamarin.Android.Support.Animated.Vector.Drawable.25.4.0.2\build\MonoAndroid70\Xamarin.Android.Support.Animated.Vector.Drawable.targets')" />

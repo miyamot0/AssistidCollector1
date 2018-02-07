@@ -43,6 +43,7 @@
     <Compile Include="Helpers\DropboxServer.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Helpers\ViewTools.cs" />
+    <Compile Include="Interfaces\InterfaceAdministrator.cs" />
     <Compile Include="Interfaces\InterfaceContentLocation.cs" />
     <Compile Include="Interfaces\InterfaceSaveLoad.cs" />
     <Compile Include="Models\Items.cs" />

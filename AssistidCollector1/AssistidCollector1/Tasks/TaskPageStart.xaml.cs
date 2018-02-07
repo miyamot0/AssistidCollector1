@@ -28,6 +28,7 @@
 using Acr.UserDialogs;
 using AssistidCollector1.Enums;
 using AssistidCollector1.Helpers;
+using AssistidCollector1.Interfaces;
 using AssistidCollector1.Models;
 using AssistidCollector1.Views;
 using Plugin.Connectivity;
@@ -228,6 +229,26 @@ namespace AssistidCollector1.Tasks
                     Debug.WriteLineIf(App.Debugging, exc.ToString());
                 }
             }
+        }
+
+        /// <summary>
+        /// Access settings, with some baby-sitting
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ToolbarItem_Clicked_1(object sender, EventArgs e)
+        {
+            DependencyService.Get<InterfaceAdministrator>().AccessSettings();
+        }
+
+        /// <summary>
+        /// Base methods
+        /// </summary>
+        /// <returns></returns>
+        protected override bool OnBackButtonPressed()
+        {
+            base.OnBackButtonPressed();
+            return true;
         }
     }
 }

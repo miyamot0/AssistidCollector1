@@ -1,24 +1,33 @@
-﻿using System;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+using Android.Content;
 using Android.OS;
 using Acr.UserDialogs;
 
 namespace AssistidCollector1.Droid
 {
-    [Activity(Label = "AssistidCollector1", 
-        Icon = "@drawable/icon", 
+    [Activity(Label = "Sleep Data Collector",
+        AlwaysRetainTaskState = true,
+        Icon = "@drawable/icon",
+        ScreenOrientation = ScreenOrientation.SensorPortrait,
+        MainLauncher = true,
         Theme = "@style/MainTheme", 
-        MainLauncher = true, 
         HardwareAccelerated = true,
         MultiProcess = true,
-        ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+        ConfigurationChanges = ConfigChanges.Orientation |
+                               ConfigChanges.ScreenSize |
+                               ConfigChanges.Keyboard |
+                               ConfigChanges.KeyboardHidden)]
+    [IntentFilter(new[] { Intent.ActionMain },
+        Categories = new[]
+        {
+            Intent.CategoryHome,
+            Android.Content.Intent.CategoryDefault
+        })]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+        public static Activity MainApplicationActivity;
+
         protected override void OnCreate(Bundle bundle)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -29,6 +38,9 @@ namespace AssistidCollector1.Droid
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
+
+            MainApplicationActivity = this;
+
             LoadApplication(new App());
         }
     }

@@ -18,7 +18,7 @@
 // </copyright>
 //
 // <summary>
-// The AssistidCollector2 is a tool to assist clinicans and researchers in the treatment of communication disorders.
+// The AssistidCollector2 is a tool to assist clinicans and researchers in the treatment of various disorders.
 // 
 // Email: shawn(dot)gilroy(at)temple.edu
 //
@@ -31,6 +31,7 @@ using AssistidCollector1.Droid.Implementations;
 using Xamarin.Forms;
 using Android.Content;
 using Uri = Android.Net.Uri;
+using System;
 
 [assembly: Dependency(typeof(ImplementationSaveLoad))]
 namespace AssistidCollector1.Droid.Implementations
@@ -73,6 +74,7 @@ namespace AssistidCollector1.Droid.Implementations
             return Path.Combine(docsPath, filename);
         }
         
+        [Obsolete]
         public void InstallLocationFile(string filename)
         {
             var path = CreatePathToFile(filename);
