@@ -61,7 +61,14 @@ namespace AssistidCollector1.Pages
                 }
             };
 
-            CheckCredentials();            
+            //CheckCredentials();            
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            CheckCredentials(); 
         }
 
         /// <summary>
