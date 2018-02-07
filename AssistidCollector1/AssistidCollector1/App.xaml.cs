@@ -128,6 +128,8 @@ namespace AssistidCollector1
         {
             InitializeComponent();
 
+            Database.Init();
+
             if (ApplicationId == string.Empty)
             {
                 ApplicationId = String.Format("{0:X}", RandomString(12));

@@ -159,7 +159,6 @@ namespace AssistidCollector1.Pages
                         Debug.WriteLineIf(App.Debugging, e.ToString());
                     }
 
-
                     progress.Title = "Polling remote database";
 
                     ListFolderResult filesExisting = await DropboxServer.CountIndividualFiles();

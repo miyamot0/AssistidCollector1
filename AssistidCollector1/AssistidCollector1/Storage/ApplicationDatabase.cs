@@ -50,6 +50,8 @@ namespace AssistidCollector1.Storage
             database.CreateTableAsync<StorageModel>().Wait();
         }
 
+        public void Init() { }
+
         /// <summary>
         /// Get manifest from db
         /// </summary>
