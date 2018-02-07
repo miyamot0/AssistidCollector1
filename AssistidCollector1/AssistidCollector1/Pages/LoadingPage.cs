@@ -50,6 +50,7 @@ namespace AssistidCollector1.Pages
         {
             Content = new StackLayout
             {
+                BackgroundColor = Color.FromHex("483A51"),
                 Children = {
                     new Image()
                     {
