@@ -32,6 +32,7 @@ using Dropbox.Api.Files;
 using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
+using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -208,6 +209,26 @@ namespace AssistidCollector1.Helpers
             FileMetadata uploaded = await App.DropboxClient.Files.UploadAsync(filePath, WriteMode.Overwrite.Instance, body: stream);
 
             return uploaded.Id;
-        }        
+        }
+
+        /// <summary>
+        /// Upload a message to cloud
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        public static async Task<string> UploadMessage(string message)
+        {
+            string messagePath = String.Format("{0:u}", DateTime.Now) + ".txt";
+
+            messagePath = messagePath.Replace(':', '-');
+            messagePath = messagePath.Replace(' ', '_');
+
+            messagePath = "/messages/" + App.ApplicationId + "_" + messagePath;
+            
+            FileMetadata uploadedMsg = await App.DropboxClient.Files.UploadAsync(messagePath, WriteMode.Overwrite.Instance, 
+                body: new System.IO.MemoryStream(Encoding.UTF8.GetBytes(message)));
+
+            return uploadedMsg.Id;
+        }
     }
 }

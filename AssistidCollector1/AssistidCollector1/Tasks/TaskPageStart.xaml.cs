@@ -242,6 +242,57 @@ namespace AssistidCollector1.Tasks
         }
 
         /// <summary>
+        /// Send message to cloud
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void ToolbarItem_Clicked_2(object sender, EventArgs e)
+        {
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                PromptResult userMessage = await UserDialogs.Instance.PromptAsync(new PromptConfig()
+                    .SetMessage("Enter your message")
+                    .SetText(""));
+
+                if (userMessage.Ok && userMessage.Text.Trim().Length > 0)
+                {
+                    try
+                    {
+                        CancellationTokenSource cancelSrc = new CancellationTokenSource();
+                        ProgressDialogConfig config = new ProgressDialogConfig()
+                            .SetTitle("Uploading to Server")
+                            .SetIsDeterministic(false)
+                            .SetMaskType(MaskType.Black)
+                            .SetCancel(onCancel: cancelSrc.Cancel);
+
+                        using (IProgressDialog progress = UserDialogs.Instance.Progress(config))
+                        {
+                            await DropboxServer.UploadMessage(userMessage.Text);
+
+                            await Task.Delay(500);
+                        }                        
+
+                        UserDialogs.Instance.Toast(new ToastConfig("Successfully Sent")
+                            .SetDuration(TimeSpan.FromSeconds(3))
+                            .SetPosition(ToastPosition.Bottom));
+                    }
+                    catch
+                    {
+                        UserDialogs.Instance.Toast(new ToastConfig("Error")
+                            .SetDuration(TimeSpan.FromSeconds(3))
+                            .SetPosition(ToastPosition.Bottom));
+                    }
+                }
+            }
+            else
+            {
+                UserDialogs.Instance.Toast(new ToastConfig("No Internet Connected")
+                    .SetDuration(TimeSpan.FromSeconds(3))
+                    .SetPosition(ToastPosition.Bottom));
+            }
+        }
+
+        /// <summary>
         /// Base methods
         /// </summary>
         /// <returns></returns>
