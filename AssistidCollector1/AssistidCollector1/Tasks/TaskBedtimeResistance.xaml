@@ -19,7 +19,7 @@
                     Grid.Row="0"
                     Grid.Column="0">
             <StackLayout x:Name="bedtimeResistanceStackContent">
-                <Label Text="Bedtime Resistance"
+                <Label Text="Bedtime Resistance Strategies"
                        FontSize="Large"
                        HorizontalTextAlignment="Center"
                        HorizontalOptions="FillAndExpand"></Label>

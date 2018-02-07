@@ -19,7 +19,7 @@
                     Grid.Row="0"
                     Grid.Column="0">
             <StackLayout x:Name="nightAwakeningStackContent">
-                <Label Text="Early Morning Awakening"
+                <Label Text="Nighttime Awakening Strategies"
                        FontSize="Large"
                        HorizontalTextAlignment="Center"
                        HorizontalOptions="FillAndExpand"></Label>

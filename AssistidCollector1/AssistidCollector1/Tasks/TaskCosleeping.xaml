@@ -19,7 +19,7 @@
                     Grid.Row="0"
                     Grid.Column="0">
             <StackLayout x:Name="coSleepingStackContent">
-                <Label Text="Early Morning Awakening"
+                <Label Text="Co-sleeping Intervention Strategies"
                        FontSize="Large"
                        HorizontalTextAlignment="Center"
                        HorizontalOptions="FillAndExpand"></Label>

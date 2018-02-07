@@ -19,7 +19,7 @@
                     Grid.Row="0"
                     Grid.Column="0">
             <StackLayout x:Name="sleepOnsetStackContent">
-                <Label Text="General Sleep Hygiene"
+                <Label Text="Sleep Onset Strategies"
                        FontSize="Large"
                        HorizontalTextAlignment="Center"
                        HorizontalOptions="FillAndExpand"></Label>
