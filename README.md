@@ -3,8 +3,10 @@ AssistidCollector1 is a native extension of work to establish a free and open so
 
 Features include:
   - Native views in both iOS and Android
-  - Use as home screen, limit access to non-intervention apps
-  - Save all information automatically, with cloud-based syncing
+  - Consumes Dropbox API, with support for token-based auth
+  - Built-in messaging support, linked to cloud-based storage
+  - Administrative mode/Pinning, limiting access to other treatment-unrelated intervention apps
+  - Information is saved locally, with cloud-based syncing as available (but not required)
 
 ### Version
 1.0.0.0
@@ -21,6 +23,9 @@ AssistidCollector1 uses a number of open source projects to work properly:
 * [SettingsPlugin](https://github.com/jamesmontemagno/SettingsPlugin) - MIT Licensed. Copyright (c) 2018 James Montemagno
 * [ACR.Dialogs](https://github.com/aritchie/userdialogs) - MIT Licensed. Copyright (c) 2018 Allan Ritchie
 * [Xamarin-Forms-In-Anger Card Styles](https://github.com/awolf/Xamarin-Forms-InAnger/tree/master/src/Cards)- MIT Licensed. Copyright (c) 2015 Adam Wolf
+
+### Referenced Works (Images)
+TODO
 
 ### Acknowledgements and Credits
 * Bernadette Kirkpatrick, National University of Ireland, Galway
@@ -49,4 +54,4 @@ This is currently under active development and evaluation.
 
 ### License
 ----
-AssistidCollector1 - Copyright July 2, 2018 Shawn Gilroy, Shawn P. Gilroy. GPL-Version 3
+AssistidCollector1 - Copyright February 2, 2018 Shawn Gilroy, Shawn P. Gilroy. GPL-Version 3
