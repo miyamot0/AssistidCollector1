@@ -92,7 +92,7 @@ namespace AssistidCollector1
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
-        public static bool Debugging = true;
+        public static bool Debugging = false;
 
         public static int DropboxDeltaTimeout = 2000;
 
