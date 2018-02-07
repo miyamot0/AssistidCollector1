@@ -34,6 +34,7 @@ using Dropbox.Api;
 using System;
 using System.Linq;
 using Xamarin.Forms;
+using AssistidCollector1.Tasks;
 
 namespace AssistidCollector1
 {
@@ -124,6 +125,8 @@ namespace AssistidCollector1
 
         public static int DropboxDeltaTimeout = 2000;
 
+        public static bool RefreshServer = false;
+
         public App()
         {
             InitializeComponent();
@@ -146,7 +149,7 @@ namespace AssistidCollector1
                 DependencyService.Get<InterfaceAdministrator>().RequestAdmin(isAdministrator);
             }
 
-            MainPage = new LoadingPage();
+            MainPage = new NavigationPage(new LoadingPage());
         }
 
         protected override void OnStart() { }
@@ -161,6 +164,11 @@ namespace AssistidCollector1
         public static void ReloadDropbox()
         {
             dropboxClient = new DropboxClient(AccessToken, new DropboxClientConfig(ApplicationName));
+        }
+
+        public void ShowStartPage()
+        {
+            MainPage = new NavigationPage(new TaskPageStart());
         }
     }
 }

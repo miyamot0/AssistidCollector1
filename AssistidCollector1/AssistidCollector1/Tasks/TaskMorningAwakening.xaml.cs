@@ -51,6 +51,8 @@ namespace AssistidCollector1.Tasks
         {
             InitializeComponent();
 
+            Title = "Early Morning Awakening Strategies";
+
             startTime = DateTime.Now;
 
             taskModels = new List<SleepTasks>();
@@ -112,6 +114,10 @@ namespace AssistidCollector1.Tasks
                 cardCheckTemplate = new CardCheckTemplate(item.PageTitle, item.PageDescription, item.Strategy);
                 earlyAwakeningStackContent.Children.Add(cardCheckTemplate);
             }
+
+            NavigationPage.SetHasNavigationBar(this, true);
+            NavigationPage.SetHasBackButton(this, true);
+            NavigationPage.SetBackButtonTitle(this, "Back");
         }
 
         /// <summary>
@@ -150,7 +156,9 @@ namespace AssistidCollector1.Tasks
                 }
             }
 
-            await Navigation.PopModalAsync();
+            App.RefreshServer = true;
+
+            await Navigation.PopAsync();
         }
     }
 }

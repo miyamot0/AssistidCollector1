@@ -166,10 +166,19 @@ namespace AssistidCollector1.Tasks
                         break;
                 }
 
-                view.Disappearing += ToolbarItem_Clicked;
+                App.RefreshServer = false;
 
-                await Navigation.PushModalAsync(view);
+                view.Disappearing += (sender2, e) => 
+                {
+                    if (App.RefreshServer)
+                    {
+                        ToolbarItem_Clicked(sender2, e);
+                    }
 
+                    App.RefreshServer = false;
+                };
+
+                await Navigation.PushAsync(view, true);
             }
         }
 

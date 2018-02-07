@@ -53,6 +53,8 @@ namespace AssistidCollector1.Tasks
         {
             InitializeComponent();
 
+            Title = "Bedtime Resistance Strategies";
+
             startTime = DateTime.Now;
 
             taskModels = new List<SleepTasks>();
@@ -154,6 +156,10 @@ namespace AssistidCollector1.Tasks
                 cardCheckTemplate = new CardCheckTemplate(item.PageTitle, item.PageDescription, item.Strategy);
                 bedtimeResistanceStackContent.Children.Add(cardCheckTemplate);
             }
+
+            NavigationPage.SetHasNavigationBar(this, true);
+            NavigationPage.SetHasBackButton(this, true);
+            NavigationPage.SetBackButtonTitle(this, "Back");
         }
 
         /// <summary>
@@ -194,7 +200,9 @@ namespace AssistidCollector1.Tasks
                 }
             }
 
-            await Navigation.PopModalAsync();
+            App.RefreshServer = true;
+
+            await Navigation.PopAsync();
         }
     }
 }

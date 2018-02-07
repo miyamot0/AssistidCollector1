@@ -51,6 +51,8 @@ namespace AssistidCollector1.Tasks
         {
             InitializeComponent();
 
+            Title = "Nighttime Awakening Strategies";
+
             startTime = DateTime.Now;
 
             taskModels = new List<SleepTasks>();
@@ -128,6 +130,10 @@ namespace AssistidCollector1.Tasks
                 cardCheckTemplate = new CardCheckTemplate(item.PageTitle, item.PageDescription, item.Strategy);
                 nightAwakeningStackContent.Children.Add(cardCheckTemplate);
             }
+
+            NavigationPage.SetHasNavigationBar(this, true);
+            NavigationPage.SetHasBackButton(this, true);
+            NavigationPage.SetBackButtonTitle(this, "Back");
         }
 
         private async void nightAwakeningButtonBottom_Clicked(object sender, System.EventArgs e)
@@ -161,7 +167,9 @@ namespace AssistidCollector1.Tasks
                 }
             }
 
-            await Navigation.PopModalAsync();
+            App.RefreshServer = true;
+
+            await Navigation.PopAsync();
         }
     }
 }
