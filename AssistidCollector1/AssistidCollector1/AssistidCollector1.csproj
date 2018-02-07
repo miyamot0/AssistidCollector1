@@ -53,8 +53,8 @@
     <Compile Include="Storage\ApplicationDatabase.cs" />
     <Compile Include="Storage\ManifestModel.cs" />
     <Compile Include="Storage\StorageModel.cs" />
-    <Compile Include="Tasks\BedtimeResistance.xaml.cs">
-      <DependentUpon>BedtimeResistance.xaml</DependentUpon>
+    <Compile Include="Tasks\TaskBedtimeResistance.xaml.cs">
+      <DependentUpon>TaskBedtimeResistance.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tasks\TaskCosleeping.xaml.cs">
       <DependentUpon>TaskCosleeping.xaml</DependentUpon>
@@ -194,7 +194,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Tasks\BedtimeResistance.xaml">
+    <EmbeddedResource Include="Tasks\TaskBedtimeResistance.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

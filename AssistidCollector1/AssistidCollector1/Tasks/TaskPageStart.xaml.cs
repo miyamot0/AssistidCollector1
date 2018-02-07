@@ -139,7 +139,7 @@ namespace AssistidCollector1.Tasks
                         break;
 
                     case Identifiers.Pages.BedtimeResistance:
-                        view = new BedtimeResistance();
+                        view = new TaskBedtimeResistance();
 
                         break;
 

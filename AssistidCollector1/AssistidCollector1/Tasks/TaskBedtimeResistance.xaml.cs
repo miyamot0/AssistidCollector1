@@ -42,13 +42,13 @@ using Xamarin.Forms;
 
 namespace AssistidCollector1.Tasks
 {
-    public partial class BedtimeResistance : ContentPage
+    public partial class TaskBedtimeResistance : ContentPage
     {
         List<SleepTasks> taskModels;
         CardCheckTemplate cardCheckTemplate;
         DateTime startTime;
 
-        public BedtimeResistance()
+        public TaskBedtimeResistance()
         {
             InitializeComponent();
 
