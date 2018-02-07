@@ -164,11 +164,6 @@ namespace AssistidCollector1.Helpers
                     return null;
                 }
 
-                foreach (var index in response.Entries)
-                {
-                    Debug.WriteLineIf(App.Debugging, " <<< " + index.Name);
-                }
-
                 return response;
 
             }

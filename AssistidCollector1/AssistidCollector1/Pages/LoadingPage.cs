@@ -40,6 +40,7 @@ using System.Threading;
 using System.Collections.Generic;
 using AssistidCollector1.Storage;
 using Xamarin.Forms;
+using System.Threading.Tasks;
 
 namespace AssistidCollector1.Pages
 {
@@ -107,8 +108,6 @@ namespace AssistidCollector1.Pages
                 App.Current.MainPage = new NavigationPage(new TaskPageStart());
             }
 
-            int filesUploaded = 0;
-
             Debug.WriteLineIf(App.Debugging, "LoadAssets()");
 
             CancellationTokenSource cancelSrc = new CancellationTokenSource();
@@ -152,8 +151,6 @@ namespace AssistidCollector1.Pages
                     }
                     catch (Exception e)
                     {
-                        // Gracefully fail here
-
                         currentItems = null;
 
                         Debug.WriteLineIf(App.Debugging, e.ToString());
@@ -161,43 +158,46 @@ namespace AssistidCollector1.Pages
 
                     progress.Title = "Polling remote database";
 
-                    ListFolderResult filesExisting = await DropboxServer.CountIndividualFiles();
+                    ListFolderResult serverFiles = await DropboxServer.CountIndividualFiles();
 
-                    if (filesExisting == null)
+                    int count = 0;
+
+                    if (serverFiles == null || currentItems == null || cancelSrc.IsCancellationRequested)
                     {
-                        filesUploaded = 0;
+                        // Nothing.. just move on
                     }
-                    else
+                    else if (currentItems.Count == serverFiles.Entries.Count)
                     {
-                        filesUploaded = filesExisting.Entries.Count;
+                        // Same.. no worries
                     }
-
-                    progress.Title = "Comparing local and remote data";
-
-                    bool missingInList = true;
-
-                    if (currentItems != null && currentItems.Count != filesUploaded)
+                    else if (currentItems.Count > serverFiles.Entries.Count)
                     {
-                        foreach (Storage.StorageModel currentDataPoint in currentItems)
+                        List<int> localIds = currentItems.Select(l => l.ID).ToList();
+
+                        List<string> remoteIdsStr = serverFiles.Entries.Select(r => r.Name).ToList();
+                        remoteIdsStr = remoteIdsStr.Select(r => r.Split('_')[1]).ToList();
+                        remoteIdsStr = remoteIdsStr.Select(r => r.Split('.')[0]).ToList();
+
+                        List<int> remoteIds = remoteIdsStr.Select(r => int.Parse(r)).ToList();
+
+                        var missing = localIds.Except(remoteIds);
+
+                        foreach (int index in missing)
                         {
-                            missingInList = true;
-
-                            Debug.WriteLineIf(App.Debugging, "CurrentDataName <<< " + App.ApplicationId + "_" + currentDataPoint.ID.ToString("d4"));
-
-                            foreach (var file in filesExisting.Entries)
+                            if (cancelSrc.IsCancellationRequested)
                             {
-                                if (file.Name.Contains(App.ApplicationId + "_" + currentDataPoint.ID.ToString("d4")))
-                                {
-                                    missingInList = false;
-                                }
-
-                                Debug.WriteLineIf(App.Debugging, "FileNames <<< " + file.Name);
+                                continue;
                             }
 
-                            if (missingInList)
-                            {
-                                await DropboxServer.UploadFile(new System.IO.MemoryStream(Encoding.UTF8.GetBytes(currentDataPoint.CSV)), currentDataPoint.ID);
-                            }
+                            progress.Title = "Uploading File " + (count + 1) + " of " + missing.Count().ToString();
+
+                            var mStorageModel = currentItems.Single(m => m.ID == index);
+
+                            await DropboxServer.UploadFile(new System.IO.MemoryStream(Encoding.UTF8.GetBytes(mStorageModel.CSV)), mStorageModel.ID);
+
+                            await Task.Delay(App.DropboxDeltaTimeout);
+
+                            count++;
                         }
                     }
                 }

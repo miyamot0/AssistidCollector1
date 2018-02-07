@@ -39,6 +39,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Dropbox.Api.Files;
+using AssistidCollector1.Storage;
+using System.Linq;
 
 namespace AssistidCollector1.Tasks
 {
@@ -206,37 +209,82 @@ namespace AssistidCollector1.Tasks
                 return;
             }
 
-            int count = 0;
+            //int count = 0;
 
             CancellationTokenSource cancelSrc = new CancellationTokenSource();
             ProgressDialogConfig config = new ProgressDialogConfig()
                 .SetTitle("Syncing with server")
-                .SetIsDeterministic(true)
+                .SetIsDeterministic(false)
                 .SetMaskType(MaskType.Black)
                 .SetCancel(onCancel: cancelSrc.Cancel);
 
             using (IProgressDialog progress = UserDialogs.Instance.Progress(config))
             {
-                progress.PercentComplete = 0;
-
                 try
                 {
-                    List<Storage.StorageModel> currentData = await App.Database.GetDataAsync();
+                    ListFolderResult serverFiles = await DropboxServer.CountIndividualFiles();
+                    List<StorageModel> currentData = await App.Database.GetDataAsync();
 
-                    if (currentData != null && currentData.Count > 0)
+                    if (serverFiles == null || currentData == null || cancelSrc.IsCancellationRequested)
                     {
-                        foreach (Storage.StorageModel currentDataPoint in currentData)
+                        // Nothing.. just move on
+                    }
+                    else if (currentData.Count == serverFiles.Entries.Count)
+                    {
+                        // Same.. no worries
+                    }
+                    else if (currentData.Count > serverFiles.Entries.Count)
+                    {
+                        List<int> localIds = currentData.Select(l => l.ID).ToList();
+
+                        List<string> remoteIdsStr = serverFiles.Entries.Select(r => r.Name).ToList();
+                        remoteIdsStr = remoteIdsStr.Select(r => r.Split('_')[1]).ToList();
+                        remoteIdsStr = remoteIdsStr.Select(r => r.Split('.')[0]).ToList();
+
+                        List<int> remoteIds = remoteIdsStr.Select(r => int.Parse(r)).ToList();
+
+                        var missing = localIds.Except(remoteIds);
+
+                        for (int count = 0; count < missing.Count() && !cancelSrc.IsCancellationRequested; count++)
                         {
-                            await Task.Delay(100);
+                            if (cancelSrc.IsCancellationRequested)
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                await Task.Delay(App.DropboxDeltaTimeout);
+                            }
 
-                            await DropboxServer.UploadFile(new System.IO.MemoryStream(Encoding.UTF8.GetBytes(currentDataPoint.CSV)), currentDataPoint.ID);
+                            progress.Title = "Uploading File " + (count + 1) + " of " + missing.Count().ToString();
 
-                            await Task.Delay(App.DropboxDeltaTimeout);
+                            var mStorageModel = currentData.Single(m => m.ID == missing.ElementAt(count));
+
+                            await DropboxServer.UploadFile(new System.IO.MemoryStream(Encoding.UTF8.GetBytes(mStorageModel.CSV)), mStorageModel.ID);
+                        }
+
+                        /*
+                        foreach (int index in missing)
+                        {
+                            if (cancelSrc.IsCancellationRequested)
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                await Task.Delay(App.DropboxDeltaTimeout);
+                            }
+
+                            progress.Title = "Uploading File " + (count + 1) + " of " + missing.Count().ToString();
+
+                            var mStorageModel = currentData.Single(m => m.ID == index);
+
+                            await DropboxServer.UploadFile(new System.IO.MemoryStream(Encoding.UTF8.GetBytes(mStorageModel.CSV)), mStorageModel.ID);
+
 
                             count++;
-
-                            progress.PercentComplete = (int)(((double)count / (double)currentData.Count) * 100);
                         }
+                        */
                     }
                 }
                 catch (Exception exc)
