@@ -112,6 +112,12 @@ namespace AssistidCollector1.Tasks
 
                 startPageStackContent.Children.Add(cardViewTemplate);
             }
+
+            // Remove this toolbar item if on iOS, is unnecessary
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+                ToolbarItems.Remove(settingsItem);
+            }
         }
 
         /// <summary>
