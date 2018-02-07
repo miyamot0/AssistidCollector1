@@ -95,6 +95,8 @@ namespace AssistidCollector1.Tasks
         {
             var getCardTapped = sender as CardViewTemplate;
 
+            ContentPage view = null;
+
             if (getCardTapped != null)
             {
                 switch (getCardTapped.PageId)
@@ -105,30 +107,35 @@ namespace AssistidCollector1.Tasks
                         break;
 
                     case Identifiers.Pages.NightAwakenings:
-                        await Navigation.PushModalAsync(new TaskNightAwakening());
+                        view = new TaskNightAwakening();
 
                         break;
 
                     case Identifiers.Pages.BedtimeResistance:
-                        await Navigation.PushModalAsync(new BedtimeResistance());
+                        view = new BedtimeResistance();
 
                         break;
 
                     case Identifiers.Pages.CoSleeping:
-                        await Navigation.PushModalAsync(new TaskCosleeping());
+                        view = new TaskCosleeping();
 
                         break;
 
                     case Identifiers.Pages.EarlyMorningAwakenings:
-                        await Navigation.PushModalAsync(new TaskMorningAwakening());
+                        view = new TaskMorningAwakening();
 
                         break;
 
                     case Identifiers.Pages.LateOnset:
-                        await Navigation.PushModalAsync(new TaskSleepOnset());
+                        view = new TaskSleepOnset();
 
                         break;
                 }
+
+                view.Disappearing += ToolbarItem_Clicked;
+
+                await Navigation.PushModalAsync(view);
+
             }
         }
 
@@ -149,7 +156,7 @@ namespace AssistidCollector1.Tasks
         /// <param name="e"></param>
         private async void ToolbarItem_Clicked(object sender, EventArgs e)
         {
-            Debug.WriteLineIf(App.Debugging, "ToolbarItem_Clicked()");
+            Debug.WriteLineIf(App.Debugging, "Update_Clicked()");
 
             if (!CrossConnectivity.Current.IsConnected)
             {
@@ -177,7 +184,9 @@ namespace AssistidCollector1.Tasks
                     {
                         foreach (Storage.StorageModel currentDataPoint in currentData)
                         {
-                            DropboxServer.UploadFile(new System.IO.MemoryStream(Encoding.UTF8.GetBytes(currentDataPoint.CSV)), currentDataPoint.ID);
+                            await Task.Delay(100);
+
+                            await DropboxServer.UploadFile(new System.IO.MemoryStream(Encoding.UTF8.GetBytes(currentDataPoint.CSV)), currentDataPoint.ID);
 
                             await Task.Delay(App.DropboxDeltaTimeout);
 

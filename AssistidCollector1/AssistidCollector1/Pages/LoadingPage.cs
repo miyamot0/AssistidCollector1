@@ -10,7 +10,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace AssistidCollector1.Pages
@@ -88,22 +87,25 @@ namespace AssistidCollector1.Pages
             {
                 try
                 {
-                    progress.Title = "Downloading manifest";
-
-                    var mManifest = await App.Database.GetManifestAsync();
-
-                    if (mManifest != null && mManifest.Count == 1)
+                    if (App.UpdatingAttempts)
                     {
-                        App.MainManifest = JsonConvert.DeserializeObject<Manifest>(mManifest.First().JSON);
-                    }
-                    else
-                    {
-                        App.MainManifest = null;
-                    }
+                        progress.Title = "Downloading manifest";
 
-                    progress.Title = "Comparing manifests";
+                        var mManifest = await App.Database.GetManifestAsync();
 
-                    await DropboxServer.DownloadManifest(App.MainManifest);
+                        if (mManifest != null && mManifest.Count == 1)
+                        {
+                            App.MainManifest = JsonConvert.DeserializeObject<Manifest>(mManifest.First().JSON);
+                        }
+                        else
+                        {
+                            App.MainManifest = null;
+                        }
+
+                        progress.Title = "Parsing Manifest";
+
+                        await DropboxServer.DownloadManifest(App.MainManifest);
+                    }
 
                     progress.Title = "Polling local database";
 

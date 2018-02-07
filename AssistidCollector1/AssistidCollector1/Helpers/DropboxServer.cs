@@ -64,13 +64,16 @@ namespace AssistidCollector1.Helpers
 
                 Manifest latestManifest = JsonConvert.DeserializeObject<Manifest>(json);
 
+                // Have to pull from latest
                 if (currentManifest == null || currentManifest.Iteration < latestManifest.Iteration)
                 {
                     foreach (var item in latestManifest.Tasks)
                     {
                         await DownloadFile(item.Content);
-                    }
 
+                        DependencyService.Get<InterfaceSaveLoad>().InstallLocationFile(item.Content);
+                    }
+                                        
                     if (currentManifest == null)
                     {
                         await App.Database.SaveItemAsync(new ManifestModel()
@@ -89,6 +92,8 @@ namespace AssistidCollector1.Helpers
                     }
 
                     App.MainManifest = latestManifest;
+
+                    // TODO: Need to save!
                 }
                 else
                 {

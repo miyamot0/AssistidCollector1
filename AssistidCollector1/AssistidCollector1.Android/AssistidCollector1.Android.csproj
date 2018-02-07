@@ -25,6 +25,11 @@
     <JavaOptions />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <AndroidKeyStore>true</AndroidKeyStore>
+    <AndroidSigningKeyStore>C:\Users\shawn\AppData\Local\Xamarin\Mono for Android\Keystore\shawn\shawn.keystore</AndroidSigningKeyStore>
+    <AndroidSigningStorePass>Abby123456</AndroidSigningStorePass>
+    <AndroidSigningKeyAlias>shawn</AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass>Abby123456</AndroidSigningKeyPass>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

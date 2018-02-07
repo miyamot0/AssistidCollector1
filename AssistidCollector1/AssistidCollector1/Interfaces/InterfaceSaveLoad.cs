@@ -29,5 +29,11 @@
         /// <param name="filename"></param>
         /// <returns></returns>
         bool FileExists(string filename);
+
+        /// <summary>
+        /// Install (android only)
+        /// </summary>
+        /// <param name="filename"></param>
+        void InstallLocationFile(string filename);
     }
 }
