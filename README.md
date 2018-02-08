@@ -25,12 +25,7 @@ AssistidCollector1 uses a number of open source projects to work properly:
 * [Xamarin-Forms-In-Anger Card Styles](https://github.com/awolf/Xamarin-Forms-InAnger/tree/master/src/Cards)- MIT Licensed. Copyright (c) 2015 Adam Wolf
 
 ### Referenced Works (Images)
-* [Late onset Sleep](https://www.123rf.com/photo_47783209_thin-focus-on-hand-of-sleepy-young-asian-boy-using-cellphone-on-white-bed.html?term=boy%2Busing%2Bmoble%2Bphone%2Bbed&vti=of8gubz5v8u7l82bpv-1-5
-) - ?? Paid
-* [Co-sleeping](https://www.flickr.com/photos/revjim/2310315467/in/photolist-4w9Yii-aXkPt-4MKw56-c4s3C-bFpWHc-hLUqDs-cNsr2-a7uxri-665LR3-4FfN6q-kWm1LX-oePagv-5RR5g1-YWg7U-22aVsk-6TkUsF-4iBkLY-89PHe9-4EuqKr-e5WZaR-F5N5D-9ZJqvp-i55K2u-8E9iop-7a4LHX-hHpr7g-7qagPs-6dQ6ec-bjwwPz-6DVeyw-7GmStt-ccZqX-9ZEzfQ-ip6y8-FGt25-9xmaFN-94YrCv-4ZVjSs-eMJB9-b2gYg2-9kxX1n-agLqkc-2w3e8-e7dcSk-2rQGzC-fJ1yyE-fCtqQL-KVkHd-Ax7nc-scsvG
-) - CC-BY-SA NC Licensed. Copyright (c) 2008 Daniel James
-* [Bedtime Resistance](http://www.simplymodernmom.com/2010/10/adventures-of-modern-mom-breaking-rules/) - ??
-* [Night Awakening](https://www.flickr.com/photos/djvirus/3186012992/) - CC-BY-2.0 Licensed. Copyright (c) 2009 Anton Pinchuk.
+TODO
 
 ### Acknowledgements and Credits
 * Bernadette Kirkpatrick, National University of Ireland, Galway
