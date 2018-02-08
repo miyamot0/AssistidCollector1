@@ -130,6 +130,7 @@
     <BundleResource Include="Resources\EarlyMorningCropped.jpg" />
     <BundleResource Include="Resources\LateOnsetCropped.jpg" />
     <BundleResource Include="Resources\NightAwakeningsCropped.jpg" />
+    <BundleResource Include="Resources\placeholder.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Acr.Support.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
