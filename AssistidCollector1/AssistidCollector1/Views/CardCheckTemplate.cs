@@ -92,9 +92,14 @@ namespace AssistidCollector1.Views
                 BackgroundColor = Color.White
             }, 4, 5, 0, 1);
 
-            grid.Children.Add(new CardDetailsView(title, instructions), 1, 4, 0, 1);
+            grid.Children.Add(new CardDetailsView(title, instructions) 
+            {
+                Margin = new Thickness(0, 5, 0, 5)
+            }, 1, 4, 0, 1);
 
             grid.Children.Add(new CardButtonView("Please check the box if completed."), 1, 5, 1, 2);
+
+            grid.Margin = new Thickness(0, 0, 0, 10);
 
             Content = grid;
         }

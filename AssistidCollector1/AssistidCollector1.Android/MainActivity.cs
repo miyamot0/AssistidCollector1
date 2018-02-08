@@ -9,7 +9,7 @@ namespace AssistidCollector1.Droid
     [Activity(Label = "Sleep Data Collector",
         AlwaysRetainTaskState = true,
         Icon = "@drawable/icon",
-        ScreenOrientation = ScreenOrientation.SensorPortrait,
+        ScreenOrientation = ScreenOrientation.Portrait,
         MainLauncher = true,
         Theme = "@style/MainTheme", 
         HardwareAccelerated = true,

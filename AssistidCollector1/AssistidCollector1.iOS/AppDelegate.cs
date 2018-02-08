@@ -27,5 +27,10 @@ namespace AssistidCollector1.iOS
 
             return base.FinishedLaunching(app, options);
         }
+
+        public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations(UIApplication application, UIWindow forWindow)
+        {
+            return UIInterfaceOrientationMask.Portrait;
+        }
     }
 }
