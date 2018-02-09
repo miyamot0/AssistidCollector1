@@ -65,13 +65,8 @@ namespace AssistidCollector1.Pages
                     }
                 }
             };
-        }
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-
-            CheckCredentials(); 
+            CheckCredentials();
         }
 
         /// <summary>
@@ -85,18 +80,25 @@ namespace AssistidCollector1.Pages
             {
                 var userInput = await UserDialogs.Instance.PromptAsync("Please input API token", null, "OK", "Cancel", "Api Token");
 
-                Debug.WriteLineIf(App.Debugging, userInput.Text);
+                if (userInput == null || userInput.Text.Trim() == "")
+                {
+                    App.AccessToken = "";
+                }
+                else
+                {
+                    Debug.WriteLineIf(App.Debugging, userInput.Text);
 
-                App.AccessToken = userInput.Text;
+                    App.AccessToken = userInput.Text;
 
-                App.ReloadDropbox();
+                    App.ReloadDropbox();
+                }
             }
             else
             {
                 App.ReloadDropbox();
-            }
 
-            LoadAssets();
+                LoadAssets();
+            }
         }
         
         /// <summary>
@@ -219,6 +221,12 @@ namespace AssistidCollector1.Pages
         protected override bool OnBackButtonPressed()
         {
             base.OnBackButtonPressed();
+
+            if (App.AccessToken == null || App.AccessToken == "")
+            {
+                CheckCredentials();
+            }
+
             return true;
         }
     }

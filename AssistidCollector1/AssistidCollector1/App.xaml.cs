@@ -42,6 +42,9 @@ namespace AssistidCollector1
     {
         public static Manifest MainManifest;
         
+        /// <summary>
+        /// Get access token from settings
+        /// </summary>
         public static string AccessToken
         {
             get
@@ -54,6 +57,9 @@ namespace AssistidCollector1
             }
         }
 
+        /// <summary>
+        /// Get application id number
+        /// </summary>
         public static string ApplicationId
         {
             get
@@ -66,6 +72,9 @@ namespace AssistidCollector1
             }
         }
 
+        /// <summary>
+        /// Get application name
+        /// </summary>
         public static string ApplicationName
         {
             get
@@ -78,6 +87,9 @@ namespace AssistidCollector1
             }
         }
 
+        /// <summary>
+        /// Get dropbox API 
+        /// </summary>
         private static DropboxClient dropboxClient;
         public static DropboxClient DropboxClient
         {
@@ -96,6 +108,9 @@ namespace AssistidCollector1
             }
         }
 
+        /// <summary>
+        /// Get sqlite db
+        /// </summary>
         private static ApplicationDatabase database;
         public static ApplicationDatabase Database
         {
