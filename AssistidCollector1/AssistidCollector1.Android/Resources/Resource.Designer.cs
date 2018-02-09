@@ -2288,10 +2288,10 @@ namespace AssistidCollector1.Droid
 			public const int avd_show_password_3 = 2130837790;
 			
 			// aapt resource value: 0x7f020055
-			public const int BedtimeResistanceCropped = 2130837589;
+			public const int BedtimeResistance = 2130837589;
 			
 			// aapt resource value: 0x7f020056
-			public const int CoSleepingCropped = 2130837590;
+			public const int CoSleeping = 2130837590;
 			
 			// aapt resource value: 0x7f020057
 			public const int design_bottom_navigation_item_background = 2130837591;
@@ -2312,7 +2312,7 @@ namespace AssistidCollector1.Droid
 			public const int design_snackbar_background = 2130837596;
 			
 			// aapt resource value: 0x7f02005d
-			public const int EarlyMorningCropped = 2130837597;
+			public const int EarlyMorningAwakening = 2130837597;
 			
 			// aapt resource value: 0x7f02005e
 			public const int ic_audiotrack_dark = 2130837598;
@@ -2759,7 +2759,7 @@ namespace AssistidCollector1.Droid
 			public const int icon = 2130837745;
 			
 			// aapt resource value: 0x7f0200f2
-			public const int LateOnsetCropped = 2130837746;
+			public const int LateOnsetSleep = 2130837746;
 			
 			// aapt resource value: 0x7f0200f3
 			public const int mr_button_connected_dark = 2130837747;
@@ -2825,7 +2825,7 @@ namespace AssistidCollector1.Droid
 			public const int navigation_empty_icon = 2130837767;
 			
 			// aapt resource value: 0x7f020108
-			public const int NightAwakeningsCropped = 2130837768;
+			public const int NightTimeAwakening = 2130837768;
 			
 			// aapt resource value: 0x7f020109
 			public const int notification_action_background = 2130837769;

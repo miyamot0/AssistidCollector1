@@ -25,7 +25,7 @@ AssistidCollector1 uses a number of open source projects to work properly:
 * [Xamarin-Forms-In-Anger Card Styles](https://github.com/awolf/Xamarin-Forms-InAnger/tree/master/src/Cards)- MIT Licensed. Copyright (c) 2015 Adam Wolf
 
 ### Referenced Works (Images)
-TODO
+* [Word Clouds](https://www.Wordclouds.com) - Permissively Licensed. Images designed by Bernadette Kirkpatrick
 
 ### Acknowledgements and Credits
 * Bernadette Kirkpatrick, National University of Ireland, Galway

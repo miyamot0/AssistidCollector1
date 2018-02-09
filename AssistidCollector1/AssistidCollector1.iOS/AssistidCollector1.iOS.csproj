@@ -125,11 +125,6 @@
     <BundleResource Include="Resources\Icon-Small%403x.png" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
     <BundleResource Include="Resources\splash.png" />
-    <BundleResource Include="Resources\BedtimeResistanceCropped.jpg" />
-    <BundleResource Include="Resources\CoSleepingCropped.jpg" />
-    <BundleResource Include="Resources\EarlyMorningCropped.jpg" />
-    <BundleResource Include="Resources\LateOnsetCropped.jpg" />
-    <BundleResource Include="Resources\NightAwakeningsCropped.jpg" />
     <BundleResource Include="Resources\placeholder.png" />
   </ItemGroup>
   <ItemGroup>
@@ -221,8 +216,21 @@
       <Name>AssistidCollector1</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Implementations\" />
+    <BundleResource Include="Resources\EarlyMorningAwakening.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\LateOnsetSleep.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\NightTimeAwakening.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\BedtimeResistance.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\CoSleeping.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

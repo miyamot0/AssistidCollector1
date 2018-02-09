@@ -66,7 +66,7 @@ namespace AssistidCollector1.Tasks
                 PageTitle = "Night-time Awakenings",
                 PageDescription = "For instructions on how to work on your child waking at night, you can follow the instructions provided here",
                 PageButton = "Select this option for more information on Night-time awakenings",
-                PageImage = "placeholder.png"
+                PageImage = "NightTimeAwakening.png"
             });
 
             taskModels.Add(new SleepTasks()
@@ -75,7 +75,7 @@ namespace AssistidCollector1.Tasks
                 PageTitle = "Bedtime Resistance",
                 PageDescription = "This section provides information on how to address resistance to bedtime routines",
                 PageButton = "Select this option for ways to address Bedtime Resistance",
-                PageImage = "placeholder.png"
+                PageImage = "BedtimeResistance.png"
             });
 
             taskModels.Add(new SleepTasks()
@@ -84,7 +84,7 @@ namespace AssistidCollector1.Tasks
                 PageTitle = "Co-sleeping",
                 PageDescription = "This area focuses on strategies for managing co-sleeping behavior.",
                 PageButton = "Select this option for co-sleeping behavior strategies",
-                PageImage = "placeholder.png"
+                PageImage = "CoSleeping.png"
             });
 
             taskModels.Add(new SleepTasks()
@@ -93,7 +93,7 @@ namespace AssistidCollector1.Tasks
                 PageTitle = "Late Onset of Sleep",
                 PageDescription = "This section focuses on how to address times when children do not get tired until very late.",
                 PageButton = "Select this option for late-onset sleep strategies",
-                PageImage = "placeholder.png"
+                PageImage = "LateOnsetSleep.png"
             });
 
             taskModels.Add(new SleepTasks()
@@ -102,7 +102,7 @@ namespace AssistidCollector1.Tasks
                 PageTitle = "Early morning awakenings",
                 PageDescription = "Information in this area discusses early morning sleep awakenings.",
                 PageButton = "Select this option for tips on addressing early morning awakenings.",
-                PageImage = "placeholder.png"
+                PageImage = "EarlyMorningAwakening.png"
             });
 
             tapGestureRecognizer = new TapGestureRecognizer();
