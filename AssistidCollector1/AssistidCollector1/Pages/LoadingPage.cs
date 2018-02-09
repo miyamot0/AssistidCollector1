@@ -66,7 +66,14 @@ namespace AssistidCollector1.Pages
                 }
             };
 
-            CheckCredentials();
+            try
+            {
+                CheckCredentials();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLineIf(App.Debugging, e.ToString());
+            }
         }
 
         /// <summary>
@@ -224,7 +231,14 @@ namespace AssistidCollector1.Pages
 
             if (App.AccessToken == null || App.AccessToken == "")
             {
-                CheckCredentials();
+                try
+                {
+                    CheckCredentials();
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLineIf(App.Debugging, e.ToString());
+                }
             }
 
             return true;
