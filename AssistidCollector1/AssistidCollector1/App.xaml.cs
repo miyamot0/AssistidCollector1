@@ -166,9 +166,19 @@ namespace AssistidCollector1
             dropboxClient = new DropboxClient(AccessToken, new DropboxClientConfig(ApplicationName));
         }
 
+        /// <summary>
+        /// Try and fail again
+        /// </summary>
         public void ShowStartPage()
         {
-            MainPage = new NavigationPage(new TaskPageStart());
+            try
+            {
+                MainPage = new NavigationPage(new TaskPageStart());
+            }
+            catch
+            {
+                MainPage = new NavigationPage(new TaskPageStart());
+            }
         }
     }
 }

@@ -51,6 +51,8 @@ namespace AssistidCollector1.Pages
         /// </summary>
         public LoadingPage()
         {
+            Title = "Sleep App";
+
             Content = new StackLayout
             {
                 BackgroundColor = Color.FromHex("483A51"),

@@ -37,7 +37,7 @@
         <ScrollView x:Name="startPageScrollView"
                     VerticalOptions="FillAndExpand"
                     HorizontalOptions="FillAndExpand"
-                    Margin="5"
+                    Margin="5, 0, 5, 0" 
                     Grid.Row="0"
                     Grid.Column="0">
             <StackLayout x:Name="startPageStackContent">

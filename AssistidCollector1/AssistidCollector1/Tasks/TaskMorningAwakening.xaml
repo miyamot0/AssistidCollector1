@@ -26,7 +26,7 @@
         <ScrollView x:Name="earlyAwakeningScrollView"
                     VerticalOptions="FillAndExpand"
                     HorizontalOptions="FillAndExpand"
-                    Margin="5"
+                    Margin="5, 0, 5, 0"
                     Grid.Row="0"
                     Grid.Column="0">
             <StackLayout x:Name="earlyAwakeningStackContent">
@@ -35,7 +35,7 @@
         </ScrollView>
 
         <Button x:Name="earlyAwakeningButtonBottom"
-                Text="Save My Recording"
+                Text="Submit"
                 HorizontalOptions="FillAndExpand"
                 BackgroundColor="Green"
                 Clicked="earlyAwakeningButtonBottom_Clicked"
