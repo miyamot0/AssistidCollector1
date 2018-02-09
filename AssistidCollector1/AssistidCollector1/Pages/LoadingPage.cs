@@ -51,8 +51,6 @@ namespace AssistidCollector1.Pages
         /// </summary>
         public LoadingPage()
         {
-            Title = "Sleep App";
-
             Content = new StackLayout
             {
                 BackgroundColor = Color.FromHex("483A51"),
@@ -65,15 +63,13 @@ namespace AssistidCollector1.Pages
                     }
                 }
             };
+        }
 
-            try
-            {
-                CheckCredentials();
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLineIf(App.Debugging, e.ToString());
-            }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            CheckCredentials();
         }
 
         /// <summary>
@@ -87,27 +83,20 @@ namespace AssistidCollector1.Pages
             {
                 var userInput = await UserDialogs.Instance.PromptAsync("Please input API token", null, "OK", "Cancel", "Api Token");
 
-                if (userInput == null || userInput.Text.Trim() == "")
-                {
-                    App.AccessToken = "";
-                }
-                else
-                {
-                    Debug.WriteLineIf(App.Debugging, userInput.Text);
+                Debug.WriteLineIf(App.Debugging, userInput.Text);
 
-                    App.AccessToken = userInput.Text;
+                App.AccessToken = userInput.Text;
 
-                    App.ReloadDropbox();
-                }
+                App.ReloadDropbox();
             }
             else
             {
                 App.ReloadDropbox();
-
-                LoadAssets();
             }
+
+            LoadAssets();
         }
-        
+
         /// <summary>
         /// Load Stuff
         /// </summary>
@@ -218,7 +207,7 @@ namespace AssistidCollector1.Pages
                 }
 
                 App.Current.MainPage = new NavigationPage(new TaskPageStart());
-            }            
+            }
         }
 
         /// <summary>
@@ -228,19 +217,6 @@ namespace AssistidCollector1.Pages
         protected override bool OnBackButtonPressed()
         {
             base.OnBackButtonPressed();
-
-            if (App.AccessToken == null || App.AccessToken == "")
-            {
-                try
-                {
-                    CheckCredentials();
-                }
-                catch (Exception e)
-                {
-                    Debug.WriteLineIf(App.Debugging, e.ToString());
-                }
-            }
-
             return true;
         }
     }
