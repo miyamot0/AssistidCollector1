@@ -14,6 +14,16 @@
                      Clicked="ToolbarItem_Clicked"/>
     </ContentPage.ToolbarItems>
 
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <OnPlatform.Platforms>
+                <On Platform="iOS" Value="0, 20, 0, 0" />
+                <On Platform="Android" Value="0, 0, 0, 0" />
+                <On Platform="UWP" Value="0, 0, 0, 0" />
+            </OnPlatform.Platforms>
+        </OnPlatform>
+    </ContentPage.Padding>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
