@@ -5,6 +5,8 @@
              x:Class="AssistidCollector1.Tasks.TaskPageStart">
 
     <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Feedback" 
+                     Clicked="Handle_Feedback_ClickedAsync"/>
         <ToolbarItem Text="Messaging" 
                      Clicked="ToolbarItem_Clicked_2"/>        
         <ToolbarItem x:Name="settingsItem" 

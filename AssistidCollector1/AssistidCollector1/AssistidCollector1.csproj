@@ -80,9 +80,16 @@
     <Compile Include="Views\CardDetailsView.cs" />
     <Compile Include="Views\CardStatusView.cs" />
     <Compile Include="Views\CardViewTemplate.cs" />
+    <Compile Include="Tasks\TaskFeedback.xaml.cs">
+      <DependentUpon>TaskFeedback.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tasks\TaskFeedback.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

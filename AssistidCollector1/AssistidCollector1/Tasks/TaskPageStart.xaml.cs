@@ -356,12 +356,28 @@ namespace AssistidCollector1.Tasks
         }
 
         /// <summary>
+        /// Handles the feedback clicked.
+        /// </summary>
+        /// <param name="sender">Sender.</param>
+        /// <param name="e">E.</param>
+        async void Handle_Feedback_ClickedAsync(object sender, System.EventArgs e)
+        {
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                var newView = new TaskFeedback();
+
+                await Navigation.PushModalAsync(newView, true);
+            }
+        }
+
+        /// <summary>
         /// Base methods
         /// </summary>
         /// <returns></returns>
         protected override bool OnBackButtonPressed()
         {
             base.OnBackButtonPressed();
+
             return true;
         }
     }

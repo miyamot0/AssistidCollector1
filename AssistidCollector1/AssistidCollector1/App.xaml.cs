@@ -142,6 +142,9 @@ namespace AssistidCollector1
 
         public static bool RefreshServer = false;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:AssistidCollector1.App"/> class.
+        /// </summary>
         public App()
         {
             InitializeComponent();
@@ -167,10 +170,19 @@ namespace AssistidCollector1
             MainPage = new NavigationPage(new LoadingPage());
         }
 
+        /// <summary>
+        /// Ons the start.
+        /// </summary>
         protected override void OnStart() { }
 
+        /// <summary>
+        /// Ons the sleep.
+        /// </summary>
         protected override void OnSleep() { }
 
+        /// <summary>
+        /// Ons the resume.
+        /// </summary>
         protected override void OnResume() { }
 
         /// <summary>
