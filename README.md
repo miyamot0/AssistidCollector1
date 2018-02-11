@@ -23,6 +23,7 @@ AssistidCollector1 uses a number of open source projects to work properly:
 * [SettingsPlugin](https://github.com/jamesmontemagno/SettingsPlugin) - MIT Licensed. Copyright (c) 2018 James Montemagno
 * [ACR.Dialogs](https://github.com/aritchie/userdialogs) - MIT Licensed. Copyright (c) 2018 Allan Ritchie
 * [Xamarin-Forms-In-Anger Card Styles](https://github.com/awolf/Xamarin-Forms-InAnger/tree/master/src/Cards)- MIT Licensed. Copyright (c) 2015 Adam Wolf
+* [Rating System Style](https://github.com/marcofolio/ColorRating)- Copyright (c) 2018 Marco Folio
 
 ### Referenced Works (Images)
 * [Word Clouds](https://www.Wordclouds.com) - Permissively Licensed. Images designed by Bernadette Kirkpatrick

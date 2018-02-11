@@ -1,4 +1,14 @@
-﻿using System;
+﻿//----------------------------------------------------------------------------------------------
+//
+// Xamarin forms helper class for frame animations
+//
+// Copyright 2018. Marco Folio
+//
+// Pulled from https://github.com/marcofolio/ColorRating
+//
+//----------------------------------------------------------------------------------------------
+
+using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
