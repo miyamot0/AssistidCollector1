@@ -83,6 +83,11 @@
     <Compile Include="Tasks\TaskFeedback.xaml.cs">
       <DependentUpon>TaskFeedback.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Storage\SleepFeedbackModel.cs" />
+    <Compile Include="Models\RatingScales.cs" />
+    <Compile Include="Views\RatingStars.cs" />
+    <Compile Include="Models\RatingClass.cs" />
+    <Compile Include="Helpers\FrameExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">

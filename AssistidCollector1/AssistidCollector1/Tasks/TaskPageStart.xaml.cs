@@ -292,6 +292,8 @@ namespace AssistidCollector1.Tasks
                     Debug.WriteLineIf(App.Debugging, exc.ToString());
                 }
             }
+
+            // TODO: upload feedback
         }
 
         /// <summary>
@@ -366,7 +368,24 @@ namespace AssistidCollector1.Tasks
             {
                 var newView = new TaskFeedback();
 
-                await Navigation.PushModalAsync(newView, true);
+                App.RefreshServer = false;
+
+                newView.Disappearing += (sender2, e2) =>
+                {
+                    if (App.RefreshServer)
+                    {
+                        ToolbarItem_Clicked(sender2, e2);
+                    }
+
+                    App.RefreshServer = false;
+                };
+
+
+                await Navigation.PushModalAsync(new NavigationPage(newView), true);
+            }
+            else
+            {
+                UserDialogs.Instance.Alert("Please connect to the internet", Title = "Error", okText:"Okay");
             }
         }
 

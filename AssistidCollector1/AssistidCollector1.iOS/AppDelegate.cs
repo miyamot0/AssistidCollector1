@@ -31,6 +31,7 @@ namespace AssistidCollector1.iOS
         public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations(UIApplication application, UIWindow forWindow)
         {
             return UIInterfaceOrientationMask.Portrait;
+            //return UIInterfaceOrientationMask.PortraitUpsideDown;
         }
     }
 }

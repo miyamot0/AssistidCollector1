@@ -48,6 +48,7 @@ namespace AssistidCollector1.Storage
             database = new SQLiteAsyncConnection(dbPath);
             database.CreateTableAsync<ManifestModel>().Wait();
             database.CreateTableAsync<StorageModel>().Wait();
+            database.CreateTableAsync<SleepFeedbackModel>().Wait();
         }
 
         public void Init() { }
@@ -71,6 +72,15 @@ namespace AssistidCollector1.Storage
         }
 
         /// <summary>
+        /// Gets the feedback async.
+        /// </summary>
+        /// <returns>The feedback async.</returns>
+        public Task<List<SleepFeedbackModel>> GetFeedbackAsync()
+        {
+            return database.Table<SleepFeedbackModel>().ToListAsync();
+        }
+
+        /// <summary>
         /// Get largest ID
         /// </summary>
         /// <returns></returns>
@@ -79,6 +89,22 @@ namespace AssistidCollector1.Storage
             try
             {
                 return GetDataAsync().Result.Aggregate((i1, i2) => i1.ID > i2.ID ? i1 : i2).ID;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// Gets the largest feedback identifier.
+        /// </summary>
+        /// <returns>The largest feedback identifier.</returns>
+        public int GetLargestFeedbackID()
+        {
+            try
+            {
+                return GetFeedbackAsync().Result.Aggregate((i1, i2) => i1.ID > i2.ID ? i1 : i2).ID;
             }
             catch
             {
@@ -102,6 +128,16 @@ namespace AssistidCollector1.Storage
         /// <param name="item"></param>
         /// <returns></returns>
         public Task<int> SaveItemAsync(StorageModel item)
+        {
+            return database.InsertAsync(item);
+        }
+
+        /// <summary>
+        /// Saves the item async.
+        /// </summary>
+        /// <returns>The item async.</returns>
+        /// <param name="item">Item.</param>
+        public Task<int> SaveItemAsync(SleepFeedbackModel item)
         {
             return database.InsertAsync(item);
         }

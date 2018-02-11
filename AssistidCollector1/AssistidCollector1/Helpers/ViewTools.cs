@@ -57,6 +57,31 @@ namespace AssistidCollector1.Helpers
             return false;
         }
 
+        public static string CommaSeparatedValue(string header, StackLayout layout, DateTime startTime, TimeSpan timeDifference)
+        {
+            string returnString = header + Environment.NewLine;
+
+            RatingStars holder;
+
+            foreach (var child in layout.Children)
+            { 
+                holder = child as RatingStars;
+
+                if (holder != null)
+                { 
+                    returnString += holder.Question + ",";
+                    returnString += holder.SelectedRating;
+                    returnString += Environment.NewLine;
+                }
+            }
+
+            returnString += "Date," + startTime.Date.ToString() + Environment.NewLine;
+            returnString += "Start," + startTime.TimeOfDay.ToString() + Environment.NewLine;
+            returnString += "Seconds," + timeDifference.TotalSeconds.ToString() + Environment.NewLine;
+
+            return returnString;
+        }
+
         public static string CommaSeparatedValue(string header, string intervention, StackLayout layout, List<SleepTasks> taskModels,
             DateTime startTime, TimeSpan timeDifference)
         {

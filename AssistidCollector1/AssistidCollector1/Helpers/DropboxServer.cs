@@ -178,6 +178,23 @@ namespace AssistidCollector1.Helpers
         }
 
         /// <summary>
+        /// Uploads the feedback.
+        /// </summary>
+        /// <returns>The feedback.</returns>
+        /// <param name="stream">Stream.</param>
+        /// <param name="fileNumber">File number.</param>
+        public static async Task<string> UploadFeedback(System.IO.MemoryStream stream, int fileNumber)
+        {
+            await Task.Delay(App.DropboxDeltaTimeout);
+
+            string filePath = "/feedback/" + App.ApplicationId + "_" + fileNumber.ToString("d4") + ".csv";
+
+            string result = await UploadFile(stream, filePath);
+
+            return result;
+        }
+
+        /// <summary>
         /// Upload file
         /// </summary>
         /// <param name="stream"></param>
