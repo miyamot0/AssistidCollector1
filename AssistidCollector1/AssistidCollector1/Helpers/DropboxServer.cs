@@ -177,6 +177,32 @@ namespace AssistidCollector1.Helpers
             }
         }
 
+        public static async Task<ListFolderResult> CountFeedback()
+        {
+            await Task.Delay(App.DropboxDeltaTimeout);
+
+            try
+            {
+                ListFolderResult response = await App.DropboxClient.Files.ListFolderAsync("/sv-" + App.ApplicationId);
+
+                if (response == null || response.Entries.Count == 0)
+                {
+                    return null;
+                }
+
+                return response;
+
+            }
+            catch (Dropbox.Api.ApiException<GetMetadataError>)
+            {
+                return null;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         /// Uploads the feedback.
         /// </summary>
@@ -187,7 +213,7 @@ namespace AssistidCollector1.Helpers
         {
             await Task.Delay(App.DropboxDeltaTimeout);
 
-            string filePath = "/feedback/" + App.ApplicationId + "_" + fileNumber.ToString("d4") + ".csv";
+            string filePath = "/sv-" + App.ApplicationId + "/" + App.ApplicationId + "_" + fileNumber.ToString("d4") + ".csv";
 
             string result = await UploadFile(stream, filePath);
 
