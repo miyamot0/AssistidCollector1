@@ -58,6 +58,8 @@ namespace AssistidCollector1.Tasks
         {
             InitializeComponent();
 
+            Title = App.ApplicationId;
+
             taskModels = new List<SleepTasks>();
 
             taskModels.Add(new SleepTasks()

@@ -65,7 +65,7 @@ namespace AssistidCollector1.Tasks
 
             feedbackStackLayout.Children.Add(new Label()
             {
-                Text = "Please rate your experience with the app (1 = No, 3 = somewhat, 5 = definitely):",
+                Text = "Please rate your experience with the app (1 or Red = No, 2 or Orange = Slightly, 3 or Yellow = Somewhat, 4 or Green = Fairly, 5 or Blue = Definitely):",
                 FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)),
                 FontAttributes = FontAttributes.Bold | FontAttributes.Italic,
                 Margin = new Thickness(20, 20, 0, 0)
@@ -78,7 +78,7 @@ namespace AssistidCollector1.Tasks
 
             feedbackStackLayout.Children.Add(new Label()
             {
-                Text = "Please rate the sleep intervention (1 = No, 3 = somewhat, 5 = definitely):",
+                Text = "Please rate the sleep intervention (1 or Red = No, 2 or Orange = Slightly, 3 or Yellow = Somewhat, 4 or Green = Fairly, 5 or Blue = Definitely):",
                 FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)),
                 FontAttributes = FontAttributes.Bold | FontAttributes.Italic,
                 Margin = new Thickness(20, 20, 0, 0)
