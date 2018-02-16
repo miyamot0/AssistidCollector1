@@ -35,6 +35,7 @@ using System;
 using System.Linq;
 using Xamarin.Forms;
 using AssistidCollector1.Tasks;
+using System.Net.Http;
 
 namespace AssistidCollector1
 {
@@ -190,7 +191,16 @@ namespace AssistidCollector1
         /// </summary>
         public static void ReloadDropbox()
         {
-            dropboxClient = new DropboxClient(AccessToken, new DropboxClientConfig(ApplicationName));
+            var mConfig = new DropboxClientConfig(ApplicationName, 0);
+
+            var mHttpClient = mConfig.HttpClient;
+            mHttpClient.Timeout = TimeSpan.FromSeconds(15);
+
+            mConfig.HttpClient = mHttpClient;
+            mConfig.LongPollHttpClient = mHttpClient;
+
+            dropboxClient = new DropboxClient(AccessToken, mConfig);
+
         }
 
         /// <summary>
