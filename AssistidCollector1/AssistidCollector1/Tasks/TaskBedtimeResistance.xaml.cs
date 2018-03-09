@@ -95,7 +95,7 @@ namespace AssistidCollector1.Tasks
             {
                 PageId = Identifiers.Pages.BedtimeResistance,
                 Strategy = Identifiers.Strategies.Specific,
-                PageTitle = "Bedtime Pass: Step 4a",
+                PageTitle = "Bedtime Pass: Step 4",
                 PageDescription = "1 pass gets one “free trip” out of the room or one parent visit.",
             });
             

@@ -85,7 +85,7 @@ namespace AssistidCollector1.Tasks
             {
                 PageId = Identifiers.Pages.EarlyMorningAwakenings,
                 Strategy = Identifiers.Strategies.Specific,
-                PageTitle = "Maintaining Expectations for Sleep Behavior",
+                PageTitle = "Maintaining Expectations for Sleep Behaviour",
                 PageDescription = "If the child awakens early than scheduled, return the child to their bedroom and simply state “it's still night-time, go back to sleep.",
             });
 
@@ -93,7 +93,7 @@ namespace AssistidCollector1.Tasks
             {
                 PageId = Identifiers.Pages.EarlyMorningAwakenings,
                 Strategy = Identifiers.Strategies.Specific,
-                PageTitle = "Napping Behavior",
+                PageTitle = "Napping Behaviour",
                 PageDescription = "Decrease day time napping.",
             });
 
@@ -101,8 +101,8 @@ namespace AssistidCollector1.Tasks
             {
                 PageId = Identifiers.Pages.EarlyMorningAwakenings,
                 Strategy = Identifiers.Strategies.Specific,
-                PageTitle = "Waking Behavior",
-                PageDescription = "Establish a consistent wake time, use audible and/or visual cues to signal wake time. When the alarm goes off, enter the child’s bedroom and open the curtains, saying “it’s time to wake up.",
+                PageTitle = "Waking Behaviour",
+                PageDescription = "Establish a consistent wake time, use audible and/or visual cues to signal wake time. When the alarm goes off, enter the child’s bedroom and open the curtains, saying “it’s time to wake up. Gradually delay the stimulus (start time of day) by 15minutes every 2-3 days.",
             });
 
             ContentHelper.AddSleepHygieneContent(taskModels);

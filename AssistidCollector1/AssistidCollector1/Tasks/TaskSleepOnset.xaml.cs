@@ -93,7 +93,7 @@ namespace AssistidCollector1.Tasks
             {
                 PageId = Identifiers.Pages.LateOnset,
                 Strategy = Identifiers.Strategies.Specific,
-                PageTitle = "Reward Positive Relaxation Behavior",
+                PageTitle = "Reward Positive Relaxation Behaviour",
                 PageDescription = "Leave the bedroom when your child is still awake and provide verbal praise and positive touch if, and only if, the child is lying quietly in bed. ",
             });
 
@@ -117,7 +117,7 @@ namespace AssistidCollector1.Tasks
             {
                 PageId = Identifiers.Pages.LateOnset,
                 Strategy = Identifiers.Strategies.Specific,
-                PageTitle = "Reward Positive Sleep Behavior",
+                PageTitle = "Reward Positive Sleep Behaviour",
                 PageDescription = "Remember to reward your child the next morning for falling asleep quickly.",
             });
 

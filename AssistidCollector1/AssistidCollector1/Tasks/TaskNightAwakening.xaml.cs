@@ -77,7 +77,7 @@ namespace AssistidCollector1.Tasks
             {
                 PageId = Identifiers.Pages.NightAwakenings,
                 Strategy = Identifiers.Strategies.Specific,
-                PageTitle = "Reinforce Appropriate Sleep-related Behavior",
+                PageTitle = "Reinforce Appropriate Sleep-related Behaviour",
                 PageDescription = "Leave the bedroom when your child is still awake, as you do so provide verbal praise and positive touch if, and only if, the child is lying quietly in bed.",
             });
 
@@ -93,7 +93,7 @@ namespace AssistidCollector1.Tasks
             {
                 PageId = Identifiers.Pages.NightAwakenings,
                 Strategy = Identifiers.Strategies.Specific,
-                PageTitle = "Nighttime Behavior Management",
+                PageTitle = "Night-time Behaviour Management",
                 PageDescription = "Managing middle-of-the-night awakenings:  Parents can handle this by either letting the child \"cry it out\" or by using the progressive delayed responding approach until the child learns to fall asleep independently.",
             });
 

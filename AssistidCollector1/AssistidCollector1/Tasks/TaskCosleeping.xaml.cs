@@ -64,6 +64,14 @@ namespace AssistidCollector1.Tasks
             {
                 PageId = Identifiers.Pages.CoSleeping,
                 Strategy = Identifiers.Strategies.Specific,
+                PageTitle = "Graduated extinction with parental presence",
+                PageDescription = "The following steps should be implemented for approximately 3 -5 nights before moving onto the next step.",
+            });
+
+            taskModels.Add(new SleepTasks()
+            {
+                PageId = Identifiers.Pages.CoSleeping,
+                Strategy = Identifiers.Strategies.Specific,
                 PageTitle = "Graduated Extinction: Step 1",
                 PageDescription = "Child goes to their own bed and parent sits on the child’s bed, or on a chair next to the bed, and remains until the child falls asleep.",
             });
