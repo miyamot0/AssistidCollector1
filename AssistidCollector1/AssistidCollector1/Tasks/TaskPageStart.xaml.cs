@@ -84,8 +84,8 @@ namespace AssistidCollector1.Tasks
             {
                 PageId = Identifiers.Pages.CoSleeping,
                 PageTitle = "Co-sleeping",
-                PageDescription = "This area focuses on strategies for managing co-sleeping behavior.",
-                PageButton = "Select this option for co-sleeping behavior strategies",
+                PageDescription = "This area focuses on strategies for managing co-sleeping behaviour.",
+                PageButton = "Select this option for co-sleeping behaviour strategies",
                 PageImage = "CoSleeping.png"
             });
 

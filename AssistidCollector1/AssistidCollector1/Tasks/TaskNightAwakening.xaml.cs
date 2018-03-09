@@ -86,7 +86,7 @@ namespace AssistidCollector1.Tasks
                 PageId = Identifiers.Pages.NightAwakenings,
                 Strategy = Identifiers.Strategies.Specific,
                 PageTitle = "Reduce Nighttime Interaction",
-                PageDescription = "The duration for the bedtime interactions for sleep compatible behaviors should be gradually reduced over time as your child learns to fall asleep independently. ",
+                PageDescription = "The duration for the bedtime interactions for sleep compatible behaviours should be gradually reduced over time as your child learns to fall asleep independently. ",
             });
 
             taskModels.Add(new SleepTasks()
@@ -102,7 +102,7 @@ namespace AssistidCollector1.Tasks
                 PageId = Identifiers.Pages.NightAwakenings,
                 Strategy = Identifiers.Strategies.Specific,
                 PageTitle = "Decrease Reliance on Adult Reassurance",
-                PageDescription = "For progressive delayed responding parents should engage in behaviors which will promote independent sleep onset.  If your child wakes at night and cries out, then parents should initially enter the room briefly and re-assure their child that everything is okay and quickly exit the room to minimize attention and interpersonal interaction during nighttime hours. This re-assuring interaction should be gradually reduced in frequency and duration over consecutive nights. ",
+                PageDescription = "For progressive delayed responding parents should engage in behaviours which will promote independent sleep onset.  If your child wakes at night and cries out, then parents should initially enter the room briefly and re-assure their child that everything is okay and quickly exit the room to minimize attention and interpersonal interaction during nighttime hours. This re-assuring interaction should be gradually reduced in frequency and duration over consecutive nights. ",
             });
 
             taskModels.Add(new SleepTasks()
@@ -118,7 +118,7 @@ namespace AssistidCollector1.Tasks
                 PageId = Identifiers.Pages.NightAwakenings,
                 Strategy = Identifiers.Strategies.Specific,
                 PageTitle = "Avoid Corrective Measures",
-                PageDescription = "Do not use early bedtime as a consequence for misbehavior.",
+                PageDescription = "Do not use early bedtime as a consequence for misbehaviour.",
             });
 
             ContentHelper.AddSleepHygieneContent(taskModels);
