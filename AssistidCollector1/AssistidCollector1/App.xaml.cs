@@ -143,6 +143,8 @@ namespace AssistidCollector1
 
         public static bool RefreshServer = false;
 
+        public static bool HasActivePageUp = false;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="T:AssistidCollector1.App"/> class.
         /// </summary>

@@ -136,6 +136,9 @@ namespace AssistidCollector1.Tasks
 
             ContentPage view = null;
 
+            // Catch
+            if (App.HasActivePageUp) return;
+
             if (getCardTapped != null)
             {
                 switch (getCardTapped.PageId)
@@ -171,6 +174,8 @@ namespace AssistidCollector1.Tasks
                         break;
                 }
 
+                App.HasActivePageUp = true;
+
                 App.RefreshServer = false;
 
                 view.Disappearing += (sender2, e) => 
@@ -181,6 +186,8 @@ namespace AssistidCollector1.Tasks
                     }
 
                     App.RefreshServer = false;
+
+                    App.HasActivePageUp = false;
                 };
 
                 await Navigation.PushAsync(view, true);
